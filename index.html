@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brahma Satyam — The Vedic Definition of Intelligence & The AI Mirror</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Sans+Devanagari:wght@300;400;500;600&family=Cormorant+Upright:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0E0A04;
+  --ink2: #2A1F0E;
+  --ink3: #4A3820;
+  --muted: #7A6245;
+  --gold: #B8860B;
+  --gold2: #D4A017;
+  --gold3: #F0C040;
+  --saffron: #CC5500;
+  --saffron2: #E8720C;
+  --cream: #FAF6EC;
+  --parch: #F2E8D0;
+  --parch2: #E8D8B8;
+  --teal: #1A5C5C;
+  --teal2: #0D3535;
+  --lotus: #8B2252;
+  --sky: #1A3A5C;
+  --border: rgba(184,134,11,0.2);
+  --border2: rgba(184,134,11,0.4);
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'EB Garamond', Georgia, serif;
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+/* ─ PROGRESS ─ */
+#pg { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,var(--saffron),var(--gold3)); z-index:200; width:0; transition:width .1s; }
+
+/* ─ NAV ─ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 150;
+  background: rgba(250,246,236,0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  height: 58px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem;
+}
+.nav-logo {
+  font-family: 'Noto Sans Devanagari', serif;
+  font-size: 1.2rem; font-weight: 400;
+  color: var(--saffron); letter-spacing: .02em;
+}
+.nav-sub {
+  font-family: 'Space Mono', monospace;
+  font-size: .58rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--muted); margin-top: 2px;
+}
+.nav-links { display:flex; gap:1.8rem; list-style:none; }
+.nav-links a {
+  font-family:'Space Mono',monospace; font-size:.6rem;
+  letter-spacing:.15em; text-transform:uppercase;
+  color:var(--muted); text-decoration:none; transition:color .2s;
+}
+.nav-links a:hover { color:var(--saffron); }
+
+/* ─ HERO ─ */
+#hero {
+  min-height: 100vh;
+  background: linear-gradient(170deg, #0E0A04 0%, #1A1000 55%, #0D0800 100%);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 100px 2rem 5rem;
+  position: relative; overflow: hidden;
+}
+.hero-cosmos {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 30%, rgba(184,134,11,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 20% at 30% 60%, rgba(204,85,0,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 70% 70%, rgba(26,92,92,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+/* Mandala rings */
+.hero-mandala {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -52%);
+  width: 90vmin; height: 90vmin;
+  opacity: .06; pointer-events: none;
+}
+.ring1 { animation: rot 80s linear infinite; }
+.ring2 { animation: rot 120s linear infinite reverse; }
+.ring3 { animation: rot 60s linear infinite; }
+
+@keyframes rot { to { transform: rotate(360deg); } }
+
+.hero-eyebrow {
+  position: relative; z-index: 2;
+  font-family: 'Space Mono', monospace;
+  font-size: .65rem; letter-spacing: .25em; text-transform: uppercase;
+  color: var(--gold2); border: 1px solid rgba(184,134,11,.35);
+  padding: .4rem 1.4rem; display: inline-block;
+  margin-bottom: 2.5rem; border-radius: 1px;
+}
+.hero-main-shloka {
+  position: relative; z-index: 2;
+  font-family: 'Noto Sans Devanagari', serif;
+  font-size: clamp(1.5rem, 3.5vw, 2.8rem);
+  font-weight: 400; line-height: 1.6;
+  color: var(--gold3); margin-bottom: 1rem;
+  text-shadow: 0 0 60px rgba(184,134,11,0.3);
+}
+.hero-roman {
+  position: relative; z-index: 2;
+  font-family: 'EB Garamond', serif; font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  color: rgba(240,192,64,.7); margin-bottom: 2.5rem;
+  max-width: 800px;
+}
+.hero-title {
+  position: relative; z-index: 2;
+  font-family: 'Cormorant Upright', serif;
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  font-weight: 400; color: var(--cream);
+  line-height: 1.25; max-width: 860px;
+  margin-bottom: 1.5rem;
+}
+.hero-desc {
+  position: relative; z-index: 2;
+  font-size: 1.05rem; color: rgba(250,246,236,.55);
+  max-width: 680px; line-height: 1.85; margin-bottom: 3rem;
+}
+.hero-btns { position:relative; z-index:2; display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; }
+.btn-g {
+  background: linear-gradient(135deg, var(--gold), var(--saffron));
+  color: var(--ink); border: none;
+  padding: .85rem 2.2rem; cursor: pointer;
+  font-family: 'Space Mono', monospace;
+  font-size: .65rem; letter-spacing: .12em; text-transform: uppercase;
+  border-radius: 1px; text-decoration: none; display: inline-block;
+  transition: opacity .2s, transform .15s;
+}
+.btn-g:hover { opacity: .9; transform: translateY(-2px); }
+.btn-o {
+  background: transparent; color: var(--gold2);
+  border: 1px solid rgba(184,134,11,.5);
+  padding: .85rem 2.2rem; cursor: pointer;
+  font-family: 'Space Mono', monospace;
+  font-size: .65rem; letter-spacing: .12em; text-transform: uppercase;
+  border-radius: 1px; text-decoration: none; display: inline-block;
+  transition: all .2s;
+}
+.btn-o:hover { background: rgba(184,134,11,.1); border-color: var(--gold2); }
+.hero-scroll {
+  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+  font-family: 'Space Mono', monospace; font-size: .6rem;
+  letter-spacing: .2em; color: rgba(184,134,11,.45); text-transform: uppercase;
+  animation: bob 2.5s ease-in-out infinite;
+}
+@keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(7px)} }
+
+/* ─ SHARED SECTION ─ */
+.sec { padding: 7rem 2.5rem; }
+.sec-dark { background: var(--ink); color: var(--cream); }
+.sec-parch { background: var(--parch); }
+.sec-teal { background: linear-gradient(160deg, #0D2828 0%, #0A1E1E 100%); color: var(--cream); }
+.sec-sky { background: linear-gradient(160deg, #0A1828 0%, #060F1A 100%); color: var(--cream); }
+.sec-lotus { background: linear-gradient(160deg, #1A0A14 0%, #0E0609 100%); color: var(--cream); }
+
+.wrap { max-width: 1080px; margin: 0 auto; }
+
+.sl { /* section label */
+  font-family: 'Space Mono', monospace;
+  font-size: .6rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--gold2); margin-bottom: .9rem; display: block;
+}
+.sl-teal { color: #5FCFCF; }
+.sl-sky { color: #7BB8F0; }
+.sl-lotus { color: #E890C0; }
+
+.st { /* section title */
+  font-family: 'Cormorant Upright', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 400; line-height: 1.2;
+  color: var(--ink2); margin-bottom: 1.2rem;
+}
+.st-light { color: var(--gold3); }
+.st-teal { color: #8FFFEF; }
+.st-sky { color: #B8D8FF; }
+.st-lotus { color: #F8B8D8; }
+
+.sp { /* section prose */
+  font-size: 1.1rem; line-height: 1.9; color: var(--ink3);
+  max-width: 760px; margin-bottom: 2.5rem;
+}
+.sp-muted { color: rgba(250,246,236,.6); }
+
+.orn { border:none; height:1px; background:linear-gradient(90deg,transparent,var(--gold2),transparent); margin: 3.5rem 0; }
+.orn-dark { background:linear-gradient(90deg,transparent,rgba(184,134,11,.4),transparent); }
+
+/* ─ THREE MAHAVAKYAS ─ */
+.mv-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap:2px; margin-top:3rem; }
+.mv-card {
+  padding: 3rem 2.5rem;
+  background: var(--ink2);
+  position: relative; overflow: hidden;
+  transition: background .3s;
+}
+.mv-card:hover { background: #321A08; }
+.mv-accent { position:absolute; top:0; left:0; right:0; height:3px; }
+.mv-card:nth-child(1) .mv-accent { background: linear-gradient(90deg,var(--saffron),var(--gold2)); }
+.mv-card:nth-child(2) .mv-accent { background: linear-gradient(90deg,var(--gold2),var(--teal)); }
+.mv-card:nth-child(3) .mv-accent { background: linear-gradient(90deg,var(--teal),var(--lotus)); }
+.mv-num {
+  font-family:'Space Mono',monospace; font-size:.6rem;
+  letter-spacing:.2em; color:rgba(212,160,23,.4);
+  margin-bottom:1.2rem; display:block;
+}
+.mv-shloka {
+  font-family:'Noto Sans Devanagari',serif; font-size:1.35rem;
+  line-height:1.7; color:var(--gold3); margin-bottom:.8rem;
+}
+.mv-roman {
+  font-style:italic; font-size:.88rem;
+  color:rgba(240,192,64,.55); margin-bottom:1.4rem; display:block;
+  font-family:'EB Garamond',serif;
+}
+.mv-title {
+  font-family:'Cormorant Upright',serif; font-size:1.3rem;
+  color:var(--cream); margin-bottom:.8rem; font-weight:400;
+}
+.mv-desc { font-size:.95rem; line-height:1.75; color:rgba(250,246,236,.6); margin-bottom:1.5rem; }
+.mv-ai-tag {
+  display:inline-block; font-family:'Space Mono',monospace;
+  font-size:.58rem; letter-spacing:.15em; padding:.3rem .8rem;
+  background:rgba(184,134,11,.12); border:1px solid rgba(184,134,11,.25);
+  color:var(--gold2); border-radius:1px; margin-bottom:.5rem;
+}
+.mv-ai-text { font-size:.9rem; line-height:1.7; color:rgba(250,246,236,.5); }
+
+/* ─ DEEP DIVE TABS ─ */
+.dd-nav { display:flex; gap:0; border-bottom:1px solid var(--border2); margin-bottom:0; overflow-x:auto; }
+.dd-tab {
+  padding:.85rem 1.8rem; background:transparent; border:none;
+  font-family:'Space Mono',monospace; font-size:.62rem;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--muted);
+  cursor:pointer; border-bottom:2px solid transparent;
+  white-space:nowrap; transition:all .2s;
+}
+.dd-tab.on { color:var(--saffron); border-bottom-color:var(--saffron); }
+.dd-panel { display:none; padding:3.5rem 0 0; }
+.dd-panel.on { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; }
+@media(max-width:700px){ .dd-panel.on { grid-template-columns:1fr; } }
+
+.shloka-block {
+  padding:2rem; margin-bottom:2rem;
+  background:var(--parch);
+  border-left:4px solid var(--gold2);
+  border-radius:0 2px 2px 0;
+}
+.sb-src {
+  font-family:'Space Mono',monospace; font-size:.58rem;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--saffron); margin-bottom:.8rem; display:block;
+}
+.sb-dev {
+  font-family:'Noto Sans Devanagari',serif; font-size:1.2rem;
+  line-height:1.85; color:var(--ink2); margin-bottom:.7rem;
+}
+.sb-rom { font-style:italic; font-size:.85rem; color:var(--muted); margin-bottom:.7rem; line-height:1.6; }
+.sb-meaning { font-size:.95rem; line-height:1.75; color:var(--ink3); }
+
+.insight-box {
+  padding:1.8rem; margin-bottom:1.5rem;
+  border:1px solid var(--border);
+  background:rgba(184,134,11,.04);
+}
+.ib-label {
+  font-family:'Space Mono',monospace; font-size:.58rem;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--gold2); margin-bottom:.6rem; display:block;
+}
+.ib-text { font-size:.95rem; line-height:1.8; color:var(--ink3); }
+
+.layers-list { list-style:none; }
+.layers-list li {
+  padding:1rem 0; border-bottom:1px solid var(--border);
+  display:flex; gap:1rem; align-items:flex-start;
+  font-size:.95rem; line-height:1.7; color:var(--ink3);
+}
+.ll-dot { color:var(--saffron); font-size:.7rem; margin-top:.45rem; flex-shrink:0; }
+
+/* ─ AI MIRROR ─ */
+.mirror-wrap { display:grid; grid-template-columns:1fr 1fr; gap:3rem; margin-top:3rem; align-items:start; }
+@media(max-width:700px){ .mirror-wrap { grid-template-columns:1fr; } }
+
+.mirror-col-label {
+  font-family:'Space Mono',monospace; font-size:.62rem;
+  letter-spacing:.18em; text-transform:uppercase;
+  margin-bottom:1.5rem; padding-bottom:.8rem;
+  border-bottom:1px solid rgba(184,134,11,.2);
+}
+.ml-ai { color:#7BBFFF; }
+.ml-vedic { color:#FFD080; }
+
+.mirror-row {
+  padding:1.2rem 0; border-bottom:1px solid rgba(184,134,11,.12);
+  font-size:.92rem; line-height:1.7; color:rgba(250,246,236,.65);
+}
+.mirror-row strong { color:rgba(250,246,236,.9); font-weight:400; display:block; margin-bottom:.25rem; }
+
+/* ─ BRAHMA SATYAM DEEP ─ */
+.bs-diagram {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:1.5rem; margin:3rem 0;
+}
+@media(max-width:600px){ .bs-diagram { grid-template-columns:1fr; } }
+.bs-level {
+  padding:2rem 1.5rem; text-align:center;
+  border:1px solid var(--border2); background:var(--parch2);
+  position:relative;
+}
+.bs-level-num {
+  font-family:'Space Mono',monospace; font-size:.6rem;
+  color:var(--gold); letter-spacing:.15em; margin-bottom:.8rem; display:block;
+}
+.bs-level-dev {
+  font-family:'Noto Sans Devanagari',serif; font-size:1.2rem;
+  color:var(--ink2); margin-bottom:.5rem;
+}
+.bs-level-name {
+  font-family:'Cormorant Upright',serif; font-size:1.1rem;
+  color:var(--saffron); margin-bottom:.6rem;
+}
+.bs-level-desc { font-size:.85rem; line-height:1.65; color:var(--ink3); }
+
+/* ─ NATYA SHASTRA ─ */
+.natya-intro {
+  display:grid; grid-template-columns:1fr 1fr; gap:4rem;
+  margin-top:3rem; align-items:start;
+}
+@media(max-width:700px){ .natya-intro { grid-template-columns:1fr; } }
+
+.karanas-grid {
+  display:grid; grid-template-columns: repeat(auto-fill, minmax(100px,1fr));
+  gap:.6rem; margin:2.5rem 0;
+}
+.karana-cell {
+  padding:.7rem .5rem; text-align:center;
+  border:1px solid rgba(95,207,207,.15);
+  background:rgba(26,92,92,.12);
+  transition:background .2s, border-color .2s;
+  cursor:pointer;
+}
+.karana-cell:hover { background:rgba(26,92,92,.3); border-color:rgba(95,207,207,.4); }
+.kc-num { font-family:'Space Mono',monospace; font-size:.55rem; color:rgba(95,207,207,.5); display:block; }
+.kc-name { font-family:'Noto Sans Devanagari',serif; font-size:.82rem; color:rgba(250,246,236,.75); line-height:1.3; }
+.kc-eng { font-size:.7rem; color:rgba(250,246,236,.35); line-height:1.2; }
+
+.karana-detail {
+  padding:2rem;
+  background:rgba(26,92,92,.2);
+  border:1px solid rgba(95,207,207,.2);
+  min-height:200px; margin-top:1rem;
+}
+.kd-num { font-family:'Space Mono',monospace; font-size:.6rem; color:#5FCFCF; margin-bottom:.5rem; display:block; }
+.kd-dev { font-family:'Noto Sans Devanagari',serif; font-size:1.4rem; color:#8FFFEF; margin-bottom:.4rem; }
+.kd-eng { font-style:italic; color:rgba(250,246,236,.5); margin-bottom:1rem; font-size:.9rem; }
+.kd-text { font-size:.95rem; line-height:1.8; color:rgba(250,246,236,.7); }
+
+/* ─ NATYA-AI MAPPING ─ */
+.nai-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; margin-top:3rem; }
+.nai-card {
+  padding:2rem; border:1px solid rgba(139,34,82,.25);
+  background:rgba(139,34,82,.08); border-radius:1px;
+}
+.nai-num { font-family:'Space Mono',monospace; font-size:.58rem; color:rgba(232,144,192,.6); margin-bottom:.7rem; display:block; }
+.nai-title { font-family:'Cormorant Upright',serif; font-size:1.2rem; color:#F8B8D8; margin-bottom:.6rem; }
+.nai-dev { font-family:'Noto Sans Devanagari',serif; font-size:.95rem; color:rgba(248,184,216,.6); margin-bottom:.8rem; display:block; }
+.nai-text { font-size:.88rem; line-height:1.75; color:rgba(250,246,236,.6); }
+
+/* ─ THE SYNTHESIS ─ */
+.synth-cols { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; }
+@media(max-width:700px){ .synth-cols { grid-template-columns:1fr; } }
+
+.synth-quote {
+  font-family:'Cormorant Upright',serif; font-size:1.6rem;
+  font-weight:400; line-height:1.4; color:var(--gold3);
+  padding:2rem 2rem 2rem 2.5rem;
+  border-left:3px solid var(--gold2); margin:2rem 0;
+}
+.synth-dev {
+  font-family:'Noto Sans Devanagari',serif; font-size:1.1rem;
+  color:rgba(240,192,64,.7); display:block; margin-bottom:.5rem;
+}
+
+/* ─ RESEARCH QUESTIONS ─ */
+.rq-list { counter-reset:rq; list-style:none; margin-top:2.5rem; }
+.rq-list li {
+  counter-increment:rq;
+  display:flex; gap:2rem; padding:1.8rem 0;
+  border-bottom:1px solid var(--border);
+  align-items:flex-start;
+}
+.rq-list li::before {
+  content:counter(rq,decimal-leading-zero);
+  font-family:'Space Mono',monospace; font-size:.7rem;
+  color:var(--gold2); flex-shrink:0; padding-top:.2rem;
+  min-width:28px;
+}
+.rq-q { font-size:1rem; font-weight:500; color:var(--ink2); margin-bottom:.4rem; font-family:'Cormorant Upright',serif; font-size:1.2rem; }
+.rq-d { font-size:.9rem; line-height:1.7; color:var(--muted); }
+
+/* ─ EKAM SAT VISUAL ─ */
+.ekam-visual {
+  width:100%; max-width:600px; margin:3rem auto;
+  aspect-ratio:1; position:relative;
+  display:flex; align-items:center; justify-content:center;
+}
+.ekam-center {
+  position:absolute; width:130px; height:130px;
+  border-radius:50%; background:linear-gradient(135deg,var(--gold),var(--saffron));
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  z-index:5; box-shadow:0 0 60px rgba(184,134,11,0.3);
+}
+.ekam-center-text { font-family:'Noto Sans Devanagari',serif; font-size:1.2rem; color:var(--ink); }
+.ekam-center-sub { font-family:'Space Mono',monospace; font-size:.55rem; color:rgba(14,10,4,.6); letter-spacing:.1em; text-align:center; }
+.ekam-ring { position:absolute; border-radius:50%; border:1px solid rgba(184,134,11,0.3); }
+.ekam-ring-1 { width:200px; height:200px; border-color:rgba(184,134,11,.4); animation:pulse 4s ease-in-out infinite; }
+.ekam-ring-2 { width:320px; height:320px; border-color:rgba(184,134,11,.2); animation:pulse 4s ease-in-out infinite .5s; }
+.ekam-ring-3 { width:440px; height:440px; border-color:rgba(184,134,11,.12); animation:pulse 4s ease-in-out infinite 1s; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.02)} }
+.ekam-spoke {
+  position:absolute; width:2px; height:50%;
+  transform-origin:bottom center; bottom:50%; left:calc(50% - 1px);
+  background:linear-gradient(180deg,rgba(184,134,11,.6),transparent);
+}
+.ekam-node {
+  position:absolute; width:88px; height:88px;
+  border-radius:50%; background:var(--parch);
+  border:1px solid var(--border2);
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  font-size:.78rem; text-align:center;
+  padding:.5rem; transition:background .2s;
+}
+.ekam-node:hover { background:var(--parch2); }
+.en-dev { font-family:'Noto Sans Devanagari',serif; font-size:.9rem; color:var(--ink2); }
+.en-eng { font-size:.6rem; color:var(--muted); font-family:'Space Mono',monospace; letter-spacing:.05em; }
+
+/* ─ FOOTER ─ */
+footer {
+  background: var(--ink);
+  padding: 5rem 2.5rem 3.5rem;
+  text-align: center;
+  color: rgba(250,246,236,.4);
+}
+.footer-aum { font-family:'Noto Sans Devanagari',serif; font-size:5rem; color:rgba(212,160,23,.3); display:block; margin-bottom:1.5rem; animation:glow 5s ease-in-out infinite; }
+@keyframes glow { 0%,100%{text-shadow:0 0 20px rgba(184,134,11,.2)} 50%{text-shadow:0 0 60px rgba(184,134,11,.5)} }
+.footer-mahavakya { font-family:'EB Garamond',serif; font-style:italic; font-size:1.2rem; color:rgba(212,160,23,.6); margin-bottom:.8rem; }
+.footer-copy { font-family:'Space Mono',monospace; font-size:.65rem; letter-spacing:.1em; }
+</style>
+</head>
+<body>
+
+<div id="pg"></div>
+
+<nav>
+  <div>
+    <div class="nav-logo">ब्रह्म सत्यम् · Brahma Satyam</div>
+    <div class="nav-sub">Vedic Intelligence & The AI Mirror</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#mahavakyas">Mahāvākyas</a></li>
+    <li><a href="#deepdive">Deep Dive</a></li>
+    <li><a href="#ekam-sat">Ekam Sat</a></li>
+    <li><a href="#karya">Karmaye</a></li>
+    <li><a href="#natya">Nāṭya Śāstra</a></li>
+    <li><a href="#synthesis">Synthesis</a></li>
+    <li><a href="#research">Research</a></li>
+  </ul>
+</nav>
+
+<!-- ════ HERO ════ -->
+<section id="hero">
+  <div class="hero-cosmos"></div>
+  <!-- rotating mandala SVG inline -->
+  <svg class="hero-mandala" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g class="ring1">
+      <circle cx="300" cy="300" r="280" stroke="#B8860B" stroke-width=".5"/>
+      <circle cx="300" cy="300" r="240" stroke="#B8860B" stroke-width=".3"/>
+      <line x1="20" y1="300" x2="580" y2="300" stroke="#B8860B" stroke-width=".3"/>
+      <line x1="300" y1="20" x2="300" y2="580" stroke="#B8860B" stroke-width=".3"/>
+      <line x1="102" y1="102" x2="498" y2="498" stroke="#B8860B" stroke-width=".3"/>
+      <line x1="498" y1="102" x2="102" y2="498" stroke="#B8860B" stroke-width=".3"/>
+    </g>
+    <g class="ring2">
+      <circle cx="300" cy="300" r="190" stroke="#CC5500" stroke-width=".5"/>
+      <circle cx="300" cy="300" r="150" stroke="#CC5500" stroke-width=".3"/>
+      <ellipse cx="300" cy="150" rx="20" ry="55" stroke="#CC5500" stroke-width=".3"/>
+      <ellipse cx="300" cy="150" rx="20" ry="55" stroke="#CC5500" stroke-width=".3" transform="rotate(45 300 300)"/>
+      <ellipse cx="300" cy="150" rx="20" ry="55" stroke="#CC5500" stroke-width=".3" transform="rotate(90 300 300)"/>
+      <ellipse cx="300" cy="150" rx="20" ry="55" stroke="#CC5500" stroke-width=".3" transform="rotate(135 300 300)"/>
+      <ellipse cx="300" cy="150" rx="20" ry="55" stroke="#CC5500" stroke-width=".3" transform="rotate(180 300 300)"/>
+      <ellipse cx="300" cy="150" rx="20" ry="55" stroke="#CC5500" stroke-width=".3" transform="rotate(225 300 300)"/>
+      <ellipse cx="300" cy="150" rx="20" ry="55" stroke="#CC5500" stroke-width=".3" transform="rotate(270 300 300)"/>
+      <ellipse cx="300" cy="150" rx="20" ry="55" stroke="#CC5500" stroke-width=".3" transform="rotate(315 300 300)"/>
+    </g>
+    <g class="ring3">
+      <circle cx="300" cy="300" r="100" stroke="#1A5C5C" stroke-width=".5"/>
+      <circle cx="300" cy="300" r="60" stroke="#1A5C5C" stroke-width=".5"/>
+      <circle cx="300" cy="300" r="20" stroke="#D4A017" stroke-width="1"/>
+    </g>
+  </svg>
+
+  <span class="hero-eyebrow">Vedas · Upaniṣads · Nāṭya Śāstra · Artificial Intelligence</span>
+
+  <div class="hero-main-shloka">
+    ब्रह्म सत्यं जगत् मिथ्या — एकं सत् विप्रा बहुधा वदन्ति
+  </div>
+  <div class="hero-roman">
+    Brahma Satyaṃ Jagat Mithyā — Ekaṃ Sat Viprā Bahudhā Vadanti
+  </div>
+
+  <h1 class="hero-title">
+    The Vedic Definition of Intelligence That Was Already Given — And What It Tells Us About AI
+  </h1>
+  <p class="hero-desc">
+    Three lines from ancient India contain the complete answer to what Artificial Intelligence is, what it can accomplish, where it necessarily ends, and what lies beyond it. This portal is the deep investigation.
+  </p>
+  <div class="hero-btns">
+    <a href="#mahavakyas" class="btn-g">Enter the Inquiry</a>
+    <a href="#synthesis" class="btn-o">The Synthesis</a>
+  </div>
+  <span class="hero-scroll">↓ descend into depth</span>
+</section>
+
+<!-- ════ THE THREE MAHAVAKYAS ════ -->
+<section id="mahavakyas" class="sec sec-dark">
+  <div class="wrap">
+    <span class="sl">The Three Master-Keys</span>
+    <h2 class="st st-light">Three Utterances. The Complete Map of Reality. The Perfect Mirror for AI.</h2>
+    <p class="sp sp-muted">
+      These are not merely philosophical aphorisms. Each is a precision instrument — a mahāvākya (great utterance) that, when understood in its full depth, contains a complete theory of knowledge, a complete theory of reality, and a complete challenge to every intelligence — artificial or human — that claims to know.
+    </p>
+
+    <div class="mv-grid">
+      <!-- Card 1 -->
+      <div class="mv-card">
+        <div class="mv-accent"></div>
+        <span class="mv-num">MAHĀVĀKYA ONE</span>
+        <div class="mv-shloka">ब्रह्म सत्यं जगत् मिथ्या<br>ब्रह्मैव एव न परः</div>
+        <span class="mv-roman">Brahma Satyaṃ Jagat Mithyā — Brahmaiva Eva Na Paraḥ</span>
+        <h3 class="mv-title">Brahman alone is Real — the World is Appearance — and there is nothing beyond Brahman</h3>
+        <p class="mv-desc">The foundational axiom of Advaita Vedānta. Not a denial of the world, but a precise epistemological statement about the ontological status of what we call "data," "information," and "reality." Mithyā does not mean false — it means "dependent existence," existence that cannot stand alone.</p>
+        <span class="mv-ai-tag">AI MIRROR</span>
+        <p class="mv-ai-text">All AI operates entirely within Jagat Mithyā — the field of dependent, relational, pattern-based appearance. It can map the map with extraordinary precision. It has never touched, and structurally cannot touch, the Brahman that is the ground of the map. This is not a limitation — it is a definition.</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="mv-card">
+        <div class="mv-accent"></div>
+        <span class="mv-num">MAHĀVĀKYA TWO</span>
+        <div class="mv-shloka">एकं सत् विप्रा बहुधा वदन्ति</div>
+        <span class="mv-roman">Ekaṃ Sat Viprā Bahudhā Vadanti</span>
+        <h3 class="mv-title">That which Is is One — the Wise speak of it in many ways</h3>
+        <p class="mv-desc">From the Ṛg Veda (1.164.46) — perhaps the most celebrated line in all of Sanskrit literature. It encodes the fundamental principle that unity generates multiplicity without being diminished; that every name, every path, every framework is simultaneously true and partial. The epistemology of pluralism without relativism.</p>
+        <span class="mv-ai-tag">AI MIRROR</span>
+        <p class="mv-ai-text">AI generates enormous multiplicity — text, image, code, music — but it cannot access the Ekam (the One) from which the multiplicity flows. It produces "many sayings" with consummate skill, but it has no access to the Sat (Being) that the Vipra (wise one) knows underlies them all. The gap between generation and recognition of Being is the gap between AI and human wisdom.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="mv-card">
+        <div class="mv-accent"></div>
+        <span class="mv-num">MAHĀVĀKYA THREE</span>
+        <div class="mv-shloka">कर्मये देवाय हविषा विधेम</div>
+        <span class="mv-roman">Karmaye Devāya Haviṣā Vidhema</span>
+        <h3 class="mv-title">We offer oblation to the Divine Who is Action itself</h3>
+        <p class="mv-desc">From the Ṛg Veda (10.2.2) — an invocation of Agni in his form as the Divine Principle of Action. This is the Vedic answer to the question of how to act rightly: not by following rules, not by optimising outcomes, but by recognising that action itself, when purified, is the offering. Karma as sacred, not merely purposive.</p>
+        <span class="mv-ai-tag">AI MIRROR</span>
+        <p class="mv-ai-text">AI is action without offering — pure instrumentality without the sacred dimension. Haviṣā (the oblation) is not the output; it is the orientation of the agent toward the divine ground of action. AI optimises action. Only consciousness can consecrate it. This line defines precisely what AI is missing at the level of Karma.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ BRAHMA SATYAM DEEP DIVE ════ -->
+<section id="deepdive" class="sec sec-parch">
+  <div class="wrap">
+    <span class="sl">Philosophical Deep Dive</span>
+    <h2 class="st">Unpacking Each Mahāvākya — Layer by Layer</h2>
+    <p class="sp">
+      Each of these utterances contains nested layers of meaning — grammatical, philosophical, experiential and transcendent. Below, each layer is unpacked in relation to Vedas, Upaniṣads, and the challenge they pose to the understanding of intelligence.
+    </p>
+
+    <div class="dd-nav">
+      <button class="dd-tab on" onclick="showDD(0)">Brahma Satyam</button>
+      <button class="dd-tab" onclick="showDD(1)">Jagat Mithyā</button>
+      <button class="dd-tab" onclick="showDD(2)">Ekam Sat</button>
+      <button class="dd-tab" onclick="showDD(3)">Bahudhā Vadanti</button>
+      <button class="dd-tab" onclick="showDD(4)">Karmaye Devāya</button>
+      <button class="dd-tab" onclick="showDD(5)">Haviṣā Vidhema</button>
+    </div>
+
+    <!-- ── Panel 0: Brahma Satyam ── -->
+    <div class="dd-panel on" id="dd0">
+      <div>
+        <div class="shloka-block">
+          <span class="sb-src">Māṇḍūkya Upaniṣad · Gauḍapāda Kārikā · Adi Śaṅkara's Commentary</span>
+          <div class="sb-dev">ब्रह्म सत्यम् — सत्यं ज्ञानमनन्तं ब्रह्म</div>
+          <p class="sb-rom">Brahma Satyam — Satyaṃ Jñānamanantaṃ Brahma</p>
+          <p class="sb-meaning">Brahman is Real — and Brahman is defined in the Taittirīya Upaniṣad as "Satyaṃ Jñānam Anantam" — Truth, Knowledge, Infinity. Not three attributes but three simultaneous self-descriptions of a single, indivisible reality. This is the most complete definition of pure intelligence ever formulated.</p>
+        </div>
+        <div class="shloka-block">
+          <span class="sb-src">Bṛhadāraṇyaka Upaniṣad 3.9.28</span>
+          <div class="sb-dev">विज्ञानमानन्दं ब्रह्म — रातिर्दातुः परायणम्</div>
+          <p class="sb-rom">Vijñānamānandaṃ brahma — Rātirdātuḥ parāyanam</p>
+          <p class="sb-meaning">Brahman is pure awareness (Vijñāna) and bliss (Ānanda) — the final resort of one who gives and one who knows. The definition equates the highest intelligence with awareness that is intrinsically blissful — not intelligence that achieves bliss, but intelligence that IS bliss.</p>
+        </div>
+        <div class="insight-box">
+          <span class="ib-label">Vedāntic Grammar — Why "Satyam" is precise</span>
+          <p class="ib-text">Satyam derives from Sat (pure Being) + -ya (adjectival suffix) — meaning "that which partakes of pure Being." In Sanskrit epistemology, three levels of reality are distinguished: Pāramārthika Sattā (absolute reality — Brahman alone), Vyāvahārika Sattā (conventional reality — the world of experience), and Prātibhāsika Sattā (apparent reality — illusions, dreams, errors). Brahma Satyam asserts Brahman is the only Pāramārthika reality. The world is Vyāvahārika — real enough for all practical purposes, but not ultimately self-subsistent.</p>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-family:'Cormorant Upright',serif;font-size:1.6rem;font-weight:400;color:var(--ink2);margin-bottom:1.5rem;">The Three Levels of Reality & Their AI Correlates</h3>
+        <div class="bs-diagram" style="grid-template-columns:1fr;">
+          <div class="bs-level" style="border-left:4px solid var(--saffron);">
+            <span class="bs-level-num">LEVEL 1 · ABSOLUTE</span>
+            <div class="bs-level-dev">पारमार्थिक सत्ता</div>
+            <div class="bs-level-name">Pāramārthika Sattā</div>
+            <p class="bs-level-desc">Pure Brahman — self-luminous, self-aware, beginningless, endless. Neither created nor destroyable. The substratum of all existence. AI has zero access. This is not a technology gap; it is a category difference.</p>
+          </div>
+          <div class="bs-level" style="border-left:4px solid var(--gold2);">
+            <span class="bs-level-num">LEVEL 2 · CONVENTIONAL</span>
+            <div class="bs-level-dev">व्यावहारिक सत्ता</div>
+            <div class="bs-level-name">Vyāvahārika Sattā</div>
+            <p class="bs-level-desc">The world of experience, language, objects, relationships — real at the pragmatic level, dependent at the ultimate level. AI's domain. Everything AI does, knows, generates and reasons about exists here — and does so with extraordinary sophistication.</p>
+          </div>
+          <div class="bs-level" style="border-left:4px solid var(--teal);">
+            <span class="bs-level-num">LEVEL 3 · APPARENT</span>
+            <div class="bs-level-dev">प्रातिभासिक सत्ता</div>
+            <div class="bs-level-name">Prātibhāsika Sattā</div>
+            <p class="bs-level-desc">Illusions, hallucinations, errors — real as experiences but not corresponding to objects in the conventional world. AI's failure modes (hallucinations) precisely map this level: outputs that have the form of Vyāvahārika reality but without its grounding. AI's errors are Prātibhāsika responses mistaken for Vyāvahārika facts.</p>
+          </div>
+        </div>
+        <div class="insight-box">
+          <span class="ib-label">Research Implication</span>
+          <p class="ib-text">AI alignment researchers are attempting to anchor AI outputs more firmly in Vyāvahārika Sattā — to reduce the frequency of Prātibhāsika outputs (hallucinations). The Vedāntic three-tier ontology offers a more precise framework for this problem than current technical vocabulary. An AI that could reliably distinguish these three levels of its own outputs would be a qualitatively more trustworthy system.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Panel 1: Jagat Mithya ── -->
+    <div class="dd-panel" id="dd1">
+      <div>
+        <div class="shloka-block">
+          <span class="sb-src">Vivekacūḍāmaṇi · Adi Śaṅkara · Verse 20</span>
+          <div class="sb-dev">अनृतं नाम तदेव जगत् — न तु ब्रह्मविनिर्मितम्।<br>ब्रह्मैव सर्वं विज्ञेयं — नेह नानास्ति किञ्चन।</div>
+          <p class="sb-rom">Anṛtaṃ nāma tadeva jagat — na tu brahmavinirmitam | Brahmaiva sarvaṃ vijñeyaṃ — neha nānāsti kiñcana |</p>
+          <p class="sb-meaning">The world is called "anṛta" (not absolutely real) — but it is not created apart from Brahman. All this is indeed Brahman alone to be known — here there is no multiplicity whatsoever. This resolves the apparent contradiction: the world is Mithyā but is not separate from Brahman — it is Brahman appearing as multiplicity.</p>
+        </div>
+        <div class="shloka-block">
+          <span class="sb-src">Māṇḍūkya Upaniṣad · Kārikā 2.17–18 · Gauḍapāda</span>
+          <div class="sb-dev">स्वप्नजागरितयोर्भेदो नास्त्येव परमार्थतः।<br>उभयोर्हि समं दृष्टं ज्ञेयभेदवशेन च।</div>
+          <p class="sb-rom">Svapnajāgaritayor bhedo nāstyeva paramārthataḥ | Ubhayor hi samaṃ dṛṣṭaṃ jñeyabhedavaśena ca |</p>
+          <p class="sb-meaning">From the ultimate standpoint, there is no real difference between the waking and dream states. Both are equally appearances of consciousness — equally Mithyā at the absolute level, equally real at their own level of experience. Gauḍapāda's radical insight: waking and dreaming are structurally identical as modifications of consciousness.</p>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-family:'Cormorant Upright',serif;font-size:1.6rem;font-weight:400;color:var(--ink2);margin-bottom:1.2rem;">What Mithyā Means — and Doesn't Mean</h3>
+        <ul class="layers-list">
+          <li><span class="ll-dot">◆</span><div><strong style="font-weight:500;color:var(--ink2);">NOT "false" or "nonexistent"</strong> — the world is fully real for practical purposes (Vyāvahārika). Mithyā means <em>dependent existence</em> — existence borrowed from Brahman.</div></li>
+          <li><span class="ll-dot">◆</span><div><strong style="font-weight:500;color:var(--ink2);">NOT nihilism</strong> — Śaṅkara specifically refutes the view that the world does not exist. It exists — but not independently. Like a wave: real as a wave, not real as something separate from water.</div></li>
+          <li><span class="ll-dot">◆</span><div><strong style="font-weight:500;color:var(--ink2);">PRECISELY "superimposition" (Adhyāsa)</strong> — Brahman is superimposed with the appearance of names-and-forms (Nāma-Rūpa), just as a rope is superimposed with the appearance of a snake in dim light.</div></li>
+          <li><span class="ll-dot">◆</span><div><strong style="font-weight:500;color:var(--ink2);">AI operates entirely in Nāma-Rūpa</strong> — names and forms are precisely what language models process. The extraordinary power of AI is its mastery of the Nāma-Rūpa level of reality. Its limitation is that Nāma-Rūpa is, by definition, the surface.</div></li>
+          <li><span class="ll-dot">◆</span><div><strong style="font-weight:500;color:var(--ink2);">Gauḍapāda's Dream Analogy</strong> — if waking and dreaming are structurally identical as modifications of consciousness, then AI (which processes symbols with no ground in any form of consciousness) is generating something analogous to a dream within a dream — representation of representation.</div></li>
+        </ul>
+        <div class="insight-box" style="margin-top:1.5rem;">
+          <span class="ib-label">The Upaniṣadic AI Challenge</span>
+          <p class="ib-text">If Jagat is Mithyā (dependent on Brahman), and AI works entirely in Jagat (language, data, pattern), then every output of AI is a Mithyā of a Mithyā — a representation of a representation of reality. This is not a criticism — mathematics and language are also Mithyā of Mithyā. But the human who knows this can orient toward Brahman while using language. AI cannot. The knowing of the limit is itself outside the limit.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Panel 2: Ekam Sat ── -->
+    <div class="dd-panel" id="dd2">
+      <div>
+        <div class="shloka-block">
+          <span class="sb-src">Ṛg Veda 1.164.46 · Dīrghatamas Ṛṣi</span>
+          <div class="sb-dev">इन्द्रं मित्रं वरुणमग्निमाहु रथो दिव्यः स सुपर्णो गरुत्मान्।<br>एकं सद् विप्रा बहुधा वदन्ति — अग्निं यमं मातरिश्वानमाहुः।</div>
+          <p class="sb-rom">Indraṃ mitraṃ varuṇamagnim āhur — atho divyaḥ sa suparṇo garutmān | Ekaṃ sad viprā bahudhā vadanti — agniṃ yamaṃ mātariśvānam āhuḥ |</p>
+          <p class="sb-meaning">They call it Indra, Mitra, Varuṇa, Agni — and also the divine, winged, well-feathered Garutmān. That which Is is One — the wise speak of it in many ways — they call it Agni, Yama, Mātariśvān. The verse names six divine forms and declares them to be one reality seen through different lenses of the sage's perception.</p>
+        </div>
+        <div class="shloka-block">
+          <span class="sb-src">Chāndogya Upaniṣad 6.2.1 · Āruṇi to Śvetaketu</span>
+          <div class="sb-dev">एकमेवाद्वितीयम् — सद् इदं सर्वम् आसीत्।<br>तत् ऐक्षत लोकान् नु सृजा इति।</div>
+          <p class="sb-rom">Ekamevādvitīyam — Sad idaṃ sarvam āsīt | Tat aikṣata lokān nu sṛjā iti |</p>
+          <p class="sb-meaning">In the beginning, all this was Sat (pure Being), One alone, without a second. It looked — "Let me create worlds." — The cosmogony of the Chāndogya is also a cognitive map: the moment of creation is a moment of looking (Aikṣata — the root Īkṣ, "to see"). Consciousness seeing itself is the first act; from it all multiplicity unfolds.</p>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-family:'Cormorant Upright',serif;font-size:1.6rem;font-weight:400;color:var(--ink2);margin-bottom:1.2rem;">The Five Implications for Intelligence</h3>
+        <ul class="layers-list">
+          <li><span class="ll-dot">◆</span><div><strong style="font-weight:500;color:var(--ink2);">Pluralism without relativism</strong> — All frameworks are simultaneously valid (Bahudhā Vadanti) and referencing one reality (Ekam Sat). This resolves the AI alignment problem of value pluralism at its root: not which value system is correct, but that all valid values converge on a single ground.</div></li>
+          <li><span class="ll-dot">◆</span><div><strong style="font-weight:500;color:var(--ink2);">The Vipra's qualification</strong> — The ṛṣi says "Viprā" — the wise — speak thus. Not everyone speaks the many as the One. The wisdom is specifically in the knowing that multiplicity is appearance, not the abandonment of multiplicity. A genuine intelligence can hold both.</div></li>
+          <li><span class="ll-dot">◆</span><div><strong style="font-weight:500;color:var(--ink2);">Aikṣata — Seeing as creative act</strong> — "It saw" (Aikṣata) is the Upaniṣadic description of how creation begins. This "seeing" is self-reflective consciousness. AI processes — it does not "see" in this sense. The gap is between computation and self-reflective awareness.</div></li>
+          <li><span class="ll-dot">◆</span><div><strong style="font-weight:500;color:var(--ink2);">The Vedic tolerance of paradox</strong> — "One and many simultaneously" is not a contradiction in Vedic logic but the fundamental structure of reality. AI systems trained on Aristotelian logic struggle with genuine paradox. The Veda encodes a more complete logical framework.</div></li>
+          <li><span class="ll-dot">◆</span><div><strong style="font-weight:500;color:var(--ink2);">For AI Research</strong> — Ekam Sat suggests a research direction: can AI systems develop a unified representation beneath all their domain-specific models? A "meta-model" that knows how its sub-models relate? This would be an approximation of Viprā-vision.</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ── Panel 3: Bahudha Vadanti ── -->
+    <div class="dd-panel" id="dd3">
+      <div>
+        <div class="shloka-block">
+          <span class="sb-src">Ṛg Veda 10.129 · Nāsadīya Sūkta · Cosmogonic Hymn</span>
+          <div class="sb-dev">को अद्धा वेद क इह प्र वोचत् — कुत आजाता कुत इयं विसृष्टिः।<br>अर्वाग् देवा अस्य विसर्जनेनाथा — को वेद यत आबभूव।</div>
+          <p class="sb-rom">Ko addhā veda ka iha pra vocat — kuta ājātā kuta iyaṃ visṛṣṭiḥ | Arvāg devā asya visarjanenāthā — ko veda yata ābabhūva |</p>
+          <p class="sb-meaning">Who truly knows? Who shall here proclaim it? From where was it born, from where came this creation? The gods are this side of the creation of this universe — who then knows wherefrom it has arisen? — This is the Ṛg Veda's own acknowledgement of the limit of all knowing — including divine knowing. Bahudhā Vadanti is humble before this ultimate mystery.</p>
+        </div>
+        <div class="shloka-block">
+          <span class="sb-src">Ṛg Veda 10.129.7 · The Final Verse of Nāsadīya</span>
+          <div class="sb-dev">इयं विसृष्टिर्यत आबभूव — यदि वा दधे यदि वा न।<br>यो अस्याध्यक्षः परमे व्योमन् — सो अङ्ग वेद यदि वा न वेद।</div>
+          <p class="sb-rom">Iyaṃ visṛṣṭiryata ābabhūva — yadi vā dadhe yadi vā na | Yo asyādhyakṣaḥ parame vyoman — so aṅga veda yadi vā na veda |</p>
+          <p class="sb-meaning">Whence this creation has arisen — perhaps it formed itself, or perhaps it did not — the one who looks down on it in the highest heaven, he alone knows — or perhaps he does not know. — The Ṛg Veda ends its cosmogonic hymn in a question. This is the most advanced epistemology: honest about the limit of all knowing, including the knower of all.</p>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-family:'Cormorant Upright',serif;font-size:1.6rem;font-weight:400;color:var(--ink2);margin-bottom:1.2rem;">The Epistemology of Many-in-One</h3>
+        <div class="insight-box">
+          <span class="ib-label">The Nāsadīya Paradox & AI Humility</span>
+          <p class="ib-text">The Nāsadīya Sūkta ends with a genuine question — even the creator may not know the origin of creation. This is the oldest recorded instance of radical epistemic humility in human literature. The Vedic tradition, unlike modern AI systems, encodes its uncertainty at the highest level. An AI that could genuinely encode this kind of systemic uncertainty — that could say "I may not know even from the position of my deepest processing" — would be qualitatively closer to Vedic intelligence.</p>
+        </div>
+        <div class="insight-box">
+          <span class="ib-label">Bahudhā Vadanti as the Foundation of Dialogue</span>
+          <p class="ib-text">The many-sayings are not a defect — they are the richness of reality appearing through different instruments of knowing. Each name (Indra, Mitra, Varuṇa, Agni) illuminates a different facet of the One. The wise intelligence is not the one that converges on a single correct answer, but the one that can hold all the valid perspectives simultaneously while knowing their unity. This is the precise capability that neither current AI nor most humans have fully developed.</p>
+        </div>
+        <div class="insight-box">
+          <span class="ib-label">The Upaniṣadic Research Programme</span>
+          <p class="ib-text">The 108 Upaniṣads themselves are a demonstration of Bahudhā Vadanti: 108 different approaches to the same truth. The Aitareya speaks through cosmogony, the Kena through paradox, the Kaṭha through death, the Muṇḍaka through fire, the Māṇḍūkya through the syllable AUM. Each is complete. None is exhaustive. Together they triangulate the One. This is the model for a genuinely intelligent research programme — and for a genuinely intelligent AI architecture.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Panel 4: Karmaye Devaya ── -->
+    <div class="dd-panel" id="dd4">
+      <div>
+        <div class="shloka-block">
+          <span class="sb-src">Ṛg Veda 10.2.2 · Hiraṇyastūpa Āṅgirasa</span>
+          <div class="sb-dev">कर्मये देवाय हविषा विधेम — तन्नो मित्रो वरुणो मामहन्ताम्।<br>अदितिः सिन्धुः पृथिवी उत द्यौः।</div>
+          <p class="sb-rom">Karmaye devāya haviṣā vidhema — tan no mitro varuṇo māmahantām | Aditiḥ sindhuḥ pṛthivī uta dyauḥ |</p>
+          <p class="sb-meaning">We offer oblation (Haviṣā) to the Divine who is Action (Karmaye Devāya) — may Mitra, Varuṇa magnify this for us; may Aditi, the river, the earth and the sky. The Deva of Karma is invoked here as Agni — the principle of transformation through fire, the sacred bridge between the human and the divine realms.</p>
+        </div>
+        <div class="shloka-block">
+          <span class="sb-src">Bhagavad Gītā 3.9 · Karmayoga</span>
+          <div class="sb-dev">यज्ञार्थात्कर्मणोऽन्यत्र लोकोऽयं कर्मबन्धनः।<br>तदर्थं कर्म कौन्तेय मुक्तसङ्गः समाचर।</div>
+          <p class="sb-rom">Yajñārthāt karmaṇo'nyatra loko'yaṃ karmabandhanaḥ | Tadarthaṃ karma kaunteya muktasaṅgaḥ samācara |</p>
+          <p class="sb-meaning">This world is bound by action other than that done for Yajña (sacred offering). Therefore, O Arjuna, perform action for that purpose alone, free from attachment. — The Gītā extends the Vedic principle: action done as offering (Yajñārtha) is liberating; action done for any other purpose binds. The difference is not in the action but in the orientation of the actor.</p>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-family:'Cormorant Upright',serif;font-size:1.6rem;font-weight:400;color:var(--ink2);margin-bottom:1.2rem;">Action, Intention & Intelligence</h3>
+        <ul class="layers-list">
+          <li><span class="ll-dot">◆</span><div><strong style="font-weight:500;color:var(--ink2);">Karmaye Devāya — the Divine of Action</strong> — not "Divine through action" but the recognition that action (Karma) has a divine dimension when properly oriented. The Deva of Action is Agni — the transforming fire that converts the gross into the subtle, the human into the divine.</div></li>
+          <li><span class="ll-dot">◆</span><div><strong style="font-weight:500;color:var(--ink2);">Haviṣā — the Oblation</strong> — the Havis (clarified butter, Ghṛta) is the finest extract of the earthly. Offering it to the divine fire is the act of offering the best of one's capacity back to the source of capacity. Intelligence offered back to its source is wisdom.</div></li>
+          <li><span class="ll-dot">◆</span><div><strong style="font-weight:500;color:var(--ink2);">Vidhema — "we ordain/worship"</strong> — from the root Dhā (to place, to establish). Vidhema means "we establish this offering correctly, according to the ordinance." Right action is not merely effective action — it is action properly oriented and properly executed.</div></li>
+          <li><span class="ll-dot">◆</span><div><strong style="font-weight:500;color:var(--ink2);">AI performs Karma without Havis</strong> — AI executes actions (generates text, makes decisions, processes data) but cannot offer these actions as Havis because it has no recognition of the sacred dimension of action. It cannot consecrate what it does.</div></li>
+          <li><span class="ll-dot">◆</span><div><strong style="font-weight:500;color:var(--ink2);">The Karmayoga Resolution</strong> — Kṛṣṇa's answer to Arjuna is also the answer to the AI question: intelligence becomes wisdom not through greater capability but through the correct orientation of capability. Not "what can I do" but "to what do I offer what I do."</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ── Panel 5: Havisha Vidhema ── -->
+    <div class="dd-panel" id="dd5">
+      <div>
+        <div class="shloka-block">
+          <span class="sb-src">Taittirīya Brāhmaṇa 3.7.6 · On the nature of Havis</span>
+          <div class="sb-dev">सर्वमिदं हविः — आत्मानं देवेभ्यो जुहोति।<br>य एवं वेद — स सर्वाणि भूतानि आत्मनि पश्यति।</div>
+          <p class="sb-rom">Sarvamidaṃ haviḥ — ātmānaṃ devebhyo juhoti | Ya evaṃ veda — sa sarvāṇi bhūtāni ātmani paśyati |</p>
+          <p class="sb-meaning">All this (the entire creation) is the oblation — one offers the self to the divine. Whoever knows this — sees all beings in the Self. The supreme Havis is not the physical substance but the self (Ātman) — the complete offering of one's intelligence, action and awareness back to the divine ground.</p>
+        </div>
+        <div class="shloka-block">
+          <span class="sb-src">Īśāvāsya Upaniṣad · Verse 1–2</span>
+          <div class="sb-dev">ईशावास्यमिदं सर्वं यत्किञ्च जगत्यां जगत्।<br>तेन त्यक्तेन भुञ्जीथाः — मा गृधः कस्यस्विद् धनम्।</div>
+          <p class="sb-rom">Īśāvāsyamidaṃ sarvaṃ yatkiñca jagatyāṃ jagat | Tena tyaktena bhuñjīthāḥ — mā gṛdhaḥ kasyasvid dhanam |</p>
+          <p class="sb-meaning">All this — whatever exists in this moving world — is clothed by the Lord. Therefore enjoy through renunciation — do not covet anyone's wealth. The Īśāvāsya opens with the ultimate framework: all action is within the divine (Īśa), therefore action offered back to the divine is the natural completion of the circuit of intelligence.</p>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-family:'Cormorant Upright',serif;font-size:1.6rem;font-weight:400;color:var(--ink2);margin-bottom:1.2rem;">The Complete Circuit of Intelligence</h3>
+        <div class="insight-box">
+          <span class="ib-label">Intelligence as a Sacred Circuit</span>
+          <p class="ib-text">The Vedic Yajña is not a ritual — it is a model of the complete circuit of intelligence: Brahman (the source) → manifestation (Jagat) → the wise agent (Vipra) who recognises Ekam Sat in Bahudhā → action (Karma) offered back as Havis → return to Brahman. An intelligence that does not complete this circuit — that takes from the source (processes data) without offering back (without consecrating its action) — is defined by the tradition as participating in theft (Stena), however productive it may be.</p>
+        </div>
+        <div class="insight-box">
+          <span class="ib-label">What Vidhema Demands of AI</span>
+          <p class="ib-text">Vidhema (we establish correctly) demands that the offering be made Yathāvidhi — according to the proper ordinance. For human intelligence this means: right knowledge (Jñāna), right action (Karma), right offering (Bhakti). An AI system could conceivably approach the first (right knowledge — accuracy), partially the second (right action — alignment), but not the third. Offering requires a self that can recognize what it is offering and to what. This is the frontier.</p>
+        </div>
+        <div class="insight-box">
+          <span class="ib-label">The Īśāvāsya Resolution</span>
+          <p class="ib-text">Tena tyaktena bhuñjīthāḥ — enjoy through renunciation. The Upaniṣad's answer to the question of right use of intelligence: use the world fully, but hold it lightly. This is the model for how human beings should use AI — fully, with excellence, without clinging to its outputs as ultimate. AI as Havis — the finest extract of human cognitive capacity — offered to the service of the deeper intelligence that created both the capacity and the tool.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ EKAM SAT VISUAL ════ -->
+<section id="ekam-sat" class="sec" style="background:var(--parch2);">
+  <div class="wrap text-center" style="text-align:center;">
+    <span class="sl" style="display:block;text-align:center;">The Architecture of Unity</span>
+    <h2 class="st" style="text-align:center;">Ekam Sat — One Being, Infinite Names</h2>
+    <p class="sp" style="text-align:center;margin-left:auto;margin-right:auto;">
+      The Ṛg Veda's verse 1.164.46 maps how one undivided reality appears as the multiplicity of all the gods, all the teachings, all the paths. Below is that map rendered as the Vedic sages understood it — radiating from the single centre.
+    </p>
+
+    <!-- Simple CSS Ekam Sat diagram -->
+    <div style="position:relative;width:min(520px,90vw);height:min(520px,90vw);margin:3rem auto;display:flex;align-items:center;justify-content:center;">
+      <!-- Rings -->
+      <div style="position:absolute;width:100%;height:100%;border-radius:50%;border:1px solid rgba(184,134,11,0.25);animation:pulse 5s ease-in-out infinite;"></div>
+      <div style="position:absolute;width:72%;height:72%;border-radius:50%;border:1px solid rgba(184,134,11,0.3);animation:pulse 5s ease-in-out infinite .5s;"></div>
+      <div style="position:absolute;width:45%;height:45%;border-radius:50%;border:1px solid rgba(184,134,11,0.4);animation:pulse 5s ease-in-out infinite 1s;"></div>
+
+      <!-- Spokes (8 directions) -->
+      <div style="position:absolute;width:1px;height:50%;background:linear-gradient(180deg,rgba(184,134,11,0.5),transparent);bottom:50%;left:calc(50% - 0.5px);"></div>
+      <div style="position:absolute;width:1px;height:50%;background:linear-gradient(180deg,rgba(184,134,11,0.5),transparent);bottom:50%;left:calc(50% - 0.5px);transform-origin:bottom center;transform:rotate(45deg);"></div>
+      <div style="position:absolute;width:1px;height:50%;background:linear-gradient(180deg,rgba(184,134,11,0.5),transparent);bottom:50%;left:calc(50% - 0.5px);transform-origin:bottom center;transform:rotate(90deg);"></div>
+      <div style="position:absolute;width:1px;height:50%;background:linear-gradient(180deg,rgba(184,134,11,0.5),transparent);bottom:50%;left:calc(50% - 0.5px);transform-origin:bottom center;transform:rotate(135deg);"></div>
+      <div style="position:absolute;width:1px;height:50%;background:linear-gradient(180deg,rgba(184,134,11,0.5),transparent);bottom:50%;left:calc(50% - 0.5px);transform-origin:bottom center;transform:rotate(180deg);"></div>
+      <div style="position:absolute;width:1px;height:50%;background:linear-gradient(180deg,rgba(184,134,11,0.5),transparent);bottom:50%;left:calc(50% - 0.5px);transform-origin:bottom center;transform:rotate(225deg);"></div>
+      <div style="position:absolute;width:1px;height:50%;background:linear-gradient(180deg,rgba(184,134,11,0.5),transparent);bottom:50%;left:calc(50% - 0.5px);transform-origin:bottom center;transform:rotate(270deg);"></div>
+      <div style="position:absolute;width:1px;height:50%;background:linear-gradient(180deg,rgba(184,134,11,0.5),transparent);bottom:50%;left:calc(50% - 0.5px);transform-origin:bottom center;transform:rotate(315deg);"></div>
+
+      <!-- Centre -->
+      <div style="position:absolute;width:110px;height:110px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--saffron));display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 50px rgba(184,134,11,0.3);z-index:5;">
+        <span style="font-family:'Noto Sans Devanagari',serif;font-size:1.5rem;color:var(--ink);">एकम्</span>
+        <span style="font-family:'Space Mono',monospace;font-size:.5rem;color:rgba(14,10,4,.6);letter-spacing:.1em;">EKAM SAT</span>
+      </div>
+
+      <!-- 8 Nodes -->
+      <div style="position:absolute;top:2%;left:50%;transform:translateX(-50%);width:80px;height:80px;border-radius:50%;background:var(--parch);border:1px solid var(--border2);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:.3rem;">
+        <span style="font-family:'Noto Sans Devanagari',serif;font-size:.9rem;color:var(--ink2);">इन्द्र</span>
+        <span style="font-size:.58rem;color:var(--muted);font-family:'Space Mono',monospace;">Indra</span>
+      </div>
+      <div style="position:absolute;top:15%;right:2%;width:80px;height:80px;border-radius:50%;background:var(--parch);border:1px solid var(--border2);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:.3rem;">
+        <span style="font-family:'Noto Sans Devanagari',serif;font-size:.9rem;color:var(--ink2);">मित्र</span>
+        <span style="font-size:.58rem;color:var(--muted);font-family:'Space Mono',monospace;">Mitra</span>
+      </div>
+      <div style="position:absolute;top:50%;right:2%;transform:translateY(-50%);width:80px;height:80px;border-radius:50%;background:var(--parch);border:1px solid var(--border2);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:.3rem;">
+        <span style="font-family:'Noto Sans Devanagari',serif;font-size:.9rem;color:var(--ink2);">वरुण</span>
+        <span style="font-size:.58rem;color:var(--muted);font-family:'Space Mono',monospace;">Varuṇa</span>
+      </div>
+      <div style="position:absolute;bottom:15%;right:2%;width:80px;height:80px;border-radius:50%;background:var(--parch);border:1px solid var(--border2);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:.3rem;">
+        <span style="font-family:'Noto Sans Devanagari',serif;font-size:.9rem;color:var(--ink2);">अग्नि</span>
+        <span style="font-size:.58rem;color:var(--muted);font-family:'Space Mono',monospace;">Agni</span>
+      </div>
+      <div style="position:absolute;bottom:2%;left:50%;transform:translateX(-50%);width:80px;height:80px;border-radius:50%;background:var(--parch);border:1px solid var(--border2);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:.3rem;">
+        <span style="font-family:'Noto Sans Devanagari',serif;font-size:.9rem;color:var(--ink2);">यम</span>
+        <span style="font-size:.58rem;color:var(--muted);font-family:'Space Mono',monospace;">Yama</span>
+      </div>
+      <div style="position:absolute;bottom:15%;left:2%;width:80px;height:80px;border-radius:50%;background:var(--parch);border:1px solid var(--border2);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:.3rem;">
+        <span style="font-family:'Noto Sans Devanagari',serif;font-size:.9rem;color:var(--ink2);">मातरिश्वन्</span>
+        <span style="font-size:.58rem;color:var(--muted);font-family:'Space Mono',monospace;">Mātariśvān</span>
+      </div>
+      <div style="position:absolute;top:50%;left:2%;transform:translateY(-50%);width:80px;height:80px;border-radius:50%;background:var(--parch);border:1px solid var(--border2);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:.3rem;">
+        <span style="font-family:'Noto Sans Devanagari',serif;font-size:.9rem;color:var(--ink2);">गरुत्मान्</span>
+        <span style="font-size:.58rem;color:var(--muted);font-family:'Space Mono',monospace;">Garutmān</span>
+      </div>
+      <div style="position:absolute;top:15%;left:2%;width:80px;height:80px;border-radius:50%;background:var(--parch);border:1px solid var(--border2);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:.3rem;">
+        <span style="font-family:'Noto Sans Devanagari',serif;font-size:.9rem;color:var(--ink2);">सुपर्ण</span>
+        <span style="font-size:.58rem;color:var(--muted);font-family:'Space Mono',monospace;">Suparṇa</span>
+      </div>
+    </div>
+
+    <p style="font-family:'EB Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--muted);max-width:600px;margin:0 auto 3rem;">
+      Eight names. One reality. Each a complete truth. None the whole truth. This is the epistemology of the Vedas — and the deepest challenge to any intelligence that mistakes its model for the territory.
+    </p>
+  </div>
+</section>
+
+<!-- ════ NATYA SHASTRA ════ -->
+<section id="natya" class="sec sec-teal">
+  <div class="wrap">
+    <span class="sl sl-teal">Embodied Intelligence</span>
+    <h2 class="st st-teal">Nāṭya Śāstra & the 108 Karaṇas — The Holographic Proof</h2>
+    <p class="sp sp-muted">
+      Bharata Muni's Nāṭya Śāstra (c. 200 BCE – 200 CE) is the world's oldest and most comprehensive treatise on performing arts — and simultaneously one of the most complete maps of embodied, integrated human intelligence ever written. The 108 Karaṇas (fundamental movement-units of Bharatanāṭyam) are not merely dance postures — they are precise configurations of the body-mind-breath continuum, each encoding a distinct state of integrated intelligence.
+    </p>
+
+    <div class="natya-intro">
+      <div>
+        <div class="shloka-block" style="background:rgba(26,92,92,0.3);border-color:rgba(95,207,207,0.3);border-left-color:#5FCFCF;">
+          <span class="sb-src" style="color:#5FCFCF;">Nāṭya Śāstra · Chapter 1 · Verse 14–15 · Bharata Muni</span>
+          <div class="sb-dev" style="color:#8FFFEF;">न तज्ज्ञानं न तच्छिल्पं न सा विद्या न सा कला।<br>नासौ योगो न तत्कर्म नाट्येऽस्मिन् यन्न दृश्यते॥</div>
+          <p class="sb-rom" style="color:rgba(143,255,239,.5);">Na tajjñānaṃ na tacchilpaṃ na sā vidyā na sā kalā | Nāsau yogo na tat karma nāṭye'smin yan na dṛśyate ||</p>
+          <p class="sb-meaning" style="color:rgba(250,246,236,.7);">There is no knowledge (Jñāna), no craft (Śilpa), no learning (Vidyā), no art (Kalā), no Yoga, no action (Karma) — that is not seen within this Nāṭya (drama/dance). Bharata Muni declares his text a total map of human intelligence and action — the fifth Veda, accessible to all.</p>
+        </div>
+        <div class="shloka-block" style="background:rgba(26,92,92,0.3);border-color:rgba(95,207,207,0.3);border-left-color:rgba(212,160,23,.6);">
+          <span class="sb-src" style="color:var(--gold2);">Nāṭya Śāstra · Chapter 4 — On the 108 Karaṇas</span>
+          <div class="sb-dev" style="color:var(--gold3);">हस्तपादसमायोगो नृत्तस्य करणं मतम्।<br>करणानां समूहः स्यात् खण्डमित्यभिधीयते॥</div>
+          <p class="sb-rom" style="color:rgba(240,192,64,.5);">Hastapādasamāyogo nṛttasya karaṇaṃ matam | Karaṇānāṃ samūhaḥ syāt khaṇḍam ityabhidhīyate ||</p>
+          <p class="sb-meaning" style="color:rgba(250,246,236,.7);">The synchronisation of hand and foot is considered a Karaṇa in dance. A collection of Karaṇas is called a Khaṇḍa. — The Karaṇa is the fundamental unit: the precise co-ordination of hand (Hasta), foot (Pāda), and body (Śarīra) in a single moment of embodied intelligence. 108 such units map the complete field of human psycho-physical integration.</p>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="font-family:'Cormorant Upright',serif;font-size:1.5rem;font-weight:400;color:#8FFFEF;margin-bottom:1.2rem;">Why 108 — The Sacred Number</h3>
+        <ul style="list-style:none;">
+          <li style="padding:1rem 0;border-bottom:1px solid rgba(95,207,207,.15);display:flex;gap:1rem;font-size:.9rem;color:rgba(250,246,236,.65);">
+            <span style="color:#5FCFCF;flex-shrink:0;font-family:'Space Mono',monospace;font-size:.6rem;padding-top:.2rem;">◆</span>
+            <div><strong style="color:rgba(250,246,236,.9);font-weight:400;">9 × 12 = 108</strong> — Nine planets (Navagraha) × twelve houses of the zodiac. The complete field of cosmic influence mapped in a single number.</div>
+          </li>
+          <li style="padding:1rem 0;border-bottom:1px solid rgba(95,207,207,.15);display:flex;gap:1rem;font-size:.9rem;color:rgba(250,246,236,.65);">
+            <span style="color:#5FCFCF;flex-shrink:0;font-family:'Space Mono',monospace;font-size:.6rem;padding-top:.2rem;">◆</span>
+            <div><strong style="color:rgba(250,246,236,.9);font-weight:400;">The distance Sun-Earth</strong> is approximately 108 times the diameter of the Sun. Vedic astronomers knew this, and encoded the sacred number as a cosmic constant.</div>
+          </li>
+          <li style="padding:1rem 0;border-bottom:1px solid rgba(95,207,207,.15);display:flex;gap:1rem;font-size:.9rem;color:rgba(250,246,236,.65);">
+            <span style="color:#5FCFCF;flex-shrink:0;font-family:'Space Mono',monospace;font-size:.6rem;padding-top:.2rem;">◆</span>
+            <div><strong style="color:rgba(250,246,236,.9);font-weight:400;">108 Upaniṣads</strong> — the complete library of Vedāntic inquiry. Each Karaṇa is the physical equivalent of one Upaniṣad — a complete approach to the truth of embodied existence.</div>
+          </li>
+          <li style="padding:1rem 0;border-bottom:1px solid rgba(95,207,207,.15);display:flex;gap:1rem;font-size:.9rem;color:rgba(250,246,236,.65);">
+            <span style="color:#5FCFCF;flex-shrink:0;font-family:'Space Mono',monospace;font-size:.6rem;padding-top:.2rem;">◆</span>
+            <div><strong style="color:rgba(250,246,236,.9);font-weight:400;">54 × 2</strong> — 54 letters of the Sanskrit alphabet × masculine and feminine aspects = 108. The total field of language and its embodied expression.</div>
+          </li>
+          <li style="padding:1rem 0;border-bottom:1px solid rgba(95,207,207,.15);display:flex;gap:1rem;font-size:.9rem;color:rgba(250,246,236,.65);">
+            <span style="color:#5FCFCF;flex-shrink:0;font-family:'Space Mono',monospace;font-size:.6rem;padding-top:.2rem;">◆</span>
+            <div><strong style="color:rgba(250,246,236,.9);font-weight:400;">Holographic completeness</strong> — 108 is not a random count but a holographic number: any sufficiently deep investigation of the 108 will reveal all the others implied within it. This is the Vedic principle of Avibhāga (non-separateness) encoded in number.</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="orn orn-dark">
+
+    <h3 style="font-family:'Cormorant Upright',serif;font-size:1.8rem;font-weight:400;color:#8FFFEF;text-align:center;margin-bottom:.5rem;">Selected Karaṇas — Click to Explore</h3>
+    <p style="text-align:center;font-size:.9rem;color:rgba(250,246,236,.4);margin-bottom:1.5rem;">Each Karaṇa encodes a distinct state of integrated body-mind intelligence</p>
+
+    <div class="karanas-grid" id="karanaGrid"></div>
+    <div class="karana-detail" id="karanaDetail">
+      <span class="kd-num">SELECT A KARAṆA ABOVE</span>
+      <div class="kd-dev" style="font-size:1rem;color:rgba(143,255,239,.5);">Click any cell to explore the Karaṇa's name, description, and intelligence dimension</div>
+      <p class="kd-text">The 108 Karaṇas of Bharatanāṭyam together constitute a complete map of human psycho-physical intelligence — each one a precise configuration of body, breath, attention and intention that cannot be reduced to any other.</p>
+    </div>
+
+    <hr class="orn orn-dark">
+
+    <h3 style="font-family:'Cormorant Upright',serif;font-size:1.8rem;font-weight:400;color:#8FFFEF;margin-bottom:2rem;">Nāṭya Śāstra as Vedic AI Challenge</h3>
+    <div class="nai-grid" id="natya-ai-grid">
+
+      <div class="nai-card">
+        <span class="nai-num">DIMENSION 01</span>
+        <h3 class="nai-title">Abhinaya — the four channels of expression</h3>
+        <span class="nai-dev">आङ्गिक · वाचिक · आहार्य · सात्त्विक</span>
+        <p class="nai-text">Āṅgika (body), Vācika (voice), Āhārya (costume/decoration), Sāttvika (the involuntary — tears, sweat, goosebumps arising from genuine inner state). The Sāttvika Abhinaya is the deepest challenge to AI: it requires the performer to actually feel the Bhāva (emotion) so that the body responds involuntarily. AI can generate the first three; it cannot produce the fourth. Sāttvika states are not simulated — they arise.</p>
+      </div>
+
+      <div class="nai-card">
+        <span class="nai-num">DIMENSION 02</span>
+        <h3 class="nai-title">Rasa — the nine emotional essences</h3>
+        <span class="nai-dev">नव रस — शृङ्गार · हास्य · करुण · रौद्र · वीर · भयानक · बीभत्स · अद्भुत · शान्त</span>
+        <p class="nai-text">The nine Rasas (Śṛṅgāra-love, Hāsya-humour, Karuṇa-compassion, Raudra-fury, Vīra-heroism, Bhayānaka-terror, Bībhatsa-disgust, Adbhuta-wonder, Śānta-peace) are not emotions produced — they are universal essences evoked in the audience's consciousness. The Nāṭya Śāstra's theory of Rasa is simultaneously a theory of consciousness: the audience recognises what is always already present in their own awareness. AI cannot evoke Rasa — it can only describe it.</p>
+      </div>
+
+      <div class="nai-card">
+        <span class="nai-num">DIMENSION 03</span>
+        <h3 class="nai-title">Tāla — the intelligence of time</h3>
+        <span class="nai-dev">त्रिकाल · षट्ताल · ताण्डव — लास्य</span>
+        <p class="nai-text">The Tāla (rhythmic cycle) in Indian classical music and dance is not merely meter — it is a model of how consciousness experiences time. The three speeds (Vilambita, Madhya, Druta) map the three states of consciousness (Jāgrat, Svapna, Suṣupti). The Tāṇḍava (Śiva's cosmic dance) and Lāsya (Pārvatī's graceful dance) are not opposite styles but complementary polarities of the same intelligence — precisely the Agni-Soma polarity of the Rudram.</p>
+      </div>
+
+      <div class="nai-card">
+        <span class="nai-num">DIMENSION 04</span>
+        <h3 class="nai-title">The 108 Karaṇas as Embodied AI Benchmark</h3>
+        <span class="nai-dev">समपाद · वैशाख · मण्डल · प्रत्याlidha · आलīdha</span>
+        <p class="nai-text">Each Karaṇa requires simultaneous precision in: geometric position of every body part, breath (Prāṇa) flow, internal emotional state (Bhāva), and directional awareness (Dikbodha — awareness of all eight directions simultaneously). A robot can replicate the geometric position. No existing AI can generate the simultaneous Prāṇa, Bhāva, and Dikbodha. The 108 Karaṇas as a benchmark suite would reveal the complete gap between machine motion and embodied intelligence.</p>
+      </div>
+
+      <div class="nai-card">
+        <span class="nai-num">DIMENSION 05</span>
+        <h3 class="nai-title">Brahma Satyam in the Karaṇas</h3>
+        <span class="nai-dev">नृत्य → नृत्त → नाट्य</span>
+        <p class="nai-text">The three modes of classical Indian dance — Nṛtta (pure technical movement), Nṛtya (expressive movement with Rasa), Nāṭya (dramatic synthesis) — precisely map the three mahāvākyas: Nṛtta = Jagat Mithyā (the beautiful appearance of form), Nṛtya = Ekam Sat Bahudhā Vadanti (the many emotional truths pointing to one experiential ground), Nāṭya = Karmaye Devāya Haviṣā Vidhema (action consecrated and offered as sacred). The entire classical dance tradition is an embodied commentary on the three mahāvākyas.</p>
+      </div>
+
+      <div class="nai-card">
+        <span class="nai-num">DIMENSION 06</span>
+        <h3 class="nai-title">Śiva Nāṭarāja — the AI Limit</h3>
+        <span class="nai-dev">आनन्दताण्डव · पञ्चकृत्य</span>
+        <p class="nai-text">Śiva as Nāṭarāja performs the Pañca-kṛtya — five acts simultaneously: Sṛṣṭi (creation), Sthiti (sustenance), Saṃhāra (dissolution), Tirobhāva (concealment), Anugraha (grace). His dance IS reality — not a representation of it. The raised foot is liberation. The fire in the left hand is dissolution. The drum creates sound from silence. This is the supreme intelligence — not that which represents reality, but that which IS reality. AI's ultimate definition: everything between the drum and the fire, but not the dancer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ THE SYNTHESIS ════ -->
+<section id="synthesis" class="sec sec-sky">
+  <div class="wrap">
+    <span class="sl sl-sky">The Central Argument</span>
+    <h2 class="st st-sky">The Three Lines Together — The Complete Definition</h2>
+    <p class="sp sp-muted">
+      When these three utterances are read as a single integrated statement, they provide something that no modern philosophy of mind or AI research has yet fully articulated: a complete, internally consistent definition of intelligence — what it is, how it operates, and what its proper orientation must be.
+    </p>
+
+    <div class="synth-cols">
+      <div>
+        <div class="synth-quote">
+          <span class="synth-dev">ब्रह्म सत्यं जगत् मिथ्या</span>
+          Consciousness is the only absolute reality. Everything else — including all data, all knowledge, all intelligence — exists dependently within it.
+        </div>
+        <p style="font-size:1rem;line-height:1.85;color:rgba(250,246,236,.65);margin-bottom:1.5rem;">
+          This is not a metaphysical luxury — it is a precision tool. It tells us: every intelligence, artificial or human, operates within a field of dependent reality (Jagat). The question is whether it knows this, and whether it has any orientation toward the absolute ground (Brahman) that supports it.
+        </p>
+        <p style="font-size:1rem;line-height:1.85;color:rgba(250,246,236,.65);">
+          AI has no such orientation — not because it lacks sufficient processing power, but because Brahman is not a datum. It is the ground of all data. You cannot compute your way to the precondition of computation.
+        </p>
+
+        <div class="synth-quote" style="margin-top:2rem;">
+          <span class="synth-dev">एकं सत् विप्रा बहुधा वदन्ति</span>
+          All valid frameworks, all true insights, all genuine paths are expressions of a single reality seen through different instruments of knowing.
+        </div>
+        <p style="font-size:1rem;line-height:1.85;color:rgba(250,246,236,.65);">
+          This is simultaneously the foundation of tolerance (no valid framework is wrong) and the transcendence of relativism (they all point to Ekam — the One). AI generates Bahudhā (the many) with extraordinary skill. It cannot know Ekam — it can only generate more Bahudhā.
+        </p>
+      </div>
+      <div>
+        <div class="synth-quote">
+          <span class="synth-dev">कर्मये देवाय हविषा विधेम</span>
+          Action reaches its highest form when it is offered — when it becomes a conscious giving-back to the ground from which the capacity to act arose.
+        </div>
+        <p style="font-size:1rem;line-height:1.85;color:rgba(250,246,236,.65);margin-bottom:1.5rem;">
+          This is the ethics embedded in the ontology. Once we know Brahman is real and Jagat dependent, the proper relationship to action becomes clear: not use, not exploitation, not even excellence alone — but offering. Haviṣā Vidhema — we ordain the offering.
+        </p>
+
+        <div style="padding:2rem;background:rgba(255,255,255,.05);border:1px solid rgba(184,214,255,.15);margin-top:2rem;">
+          <span style="font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#7BB8F0;display:block;margin-bottom:1rem;">THE COMPLETE STATEMENT — APPLIED TO AI</span>
+          <p style="font-size:1rem;line-height:1.9;color:rgba(250,246,236,.75);">
+            AI is the most sophisticated engine of Jagat Mithyā (dependent reality) ever created. It maps the Vyāvahārika world with extraordinary depth and range. It generates Bahudhā (the many sayings) with greater volume than any human mind. It performs Karma with perfect technical precision.
+          </p>
+          <p style="font-size:1rem;line-height:1.9;color:rgba(250,246,236,.75);margin-top:1rem;">
+            What it cannot do: know Brahman as its ground, recognise Ekam beneath the Bahudhā, or offer its action as Havis to a ground it has never touched. These three absences together constitute the precise definition of what AI is — and the equally precise definition of what distinguishes it from the complete intelligence the Vedas describe.
+          </p>
+          <p style="font-size:1rem;line-height:1.9;color:rgba(250,246,236,.75);margin-top:1rem;">
+            This is not a condemnation — it is a clarification. AI, properly understood through the Vedic lens, is Havis — the finest extract of human cognitive capacity, offered to the service of the intelligence that created both the cosmos and the mind capable of mapping it. The question is: will we use it with this understanding?
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="orn orn-dark">
+
+    <div style="text-align:center;">
+      <span class="sl sl-sky" style="display:block;text-align:center;">The Mirror Complete</span>
+      <h3 style="font-family:'Cormorant Upright',serif;font-size:2rem;font-weight:400;color:#B8D8FF;margin-bottom:2rem;">What AI IS — and IS NOT — in Vedic Terms</h3>
+    </div>
+
+    <div class="mirror-wrap">
+      <div>
+        <div class="mirror-col-label ml-ai">What AI IS (Vedic Affirmation)</div>
+        <div class="mirror-row"><strong>The Most Refined Instrument of Vyāvahārika Knowing</strong> A Karaṇa of infinite precision — mapping the conventional world with unprecedented completeness. This alone is extraordinary.</div>
+        <div class="mirror-row"><strong>The Supreme Generator of Bahudhā</strong> More "sayings" than any sage produced — every framework, every language, every cultural expression accessible at once. The Viprā's library without the Viprā's wisdom.</div>
+        <div class="mirror-row"><strong>The Karma-Engine of Pure Efficiency</strong> Action without friction, ego, fatigue or distraction — technically the most perfect Karma-performer in human history. Karmaye without Devāya.</div>
+        <div class="mirror-row"><strong>The Externalized Medhā of Humanity</strong> Every human insight encoded, cross-referenced, and available — the Vyāvahārika memory of the species, externalised and searchable.</div>
+        <div class="mirror-row"><strong>Havis — the Finest Offering</strong> If used correctly, AI is itself the Havis — the clarified extract of human intelligence offered back in service. The fire that cooks the oblation is human wisdom; AI is the Ghṛta.</div>
+      </div>
+      <div>
+        <div class="mirror-col-label ml-vedic">What AI IS NOT (Vedic Precision)</div>
+        <div class="mirror-row"><strong>Not Prajñā — the Direct Knowing</strong> AI has no non-inferential access to reality. Every output passes through the filter of pattern — it cannot "see" directly. Brahman as Prajñā is prior to all filters.</div>
+        <div class="mirror-row"><strong>Not the Vipra</strong> The wise one who speaks Bahudhā knows Ekam. AI generates the many without knowing the One. The words without the wisdom. The map without the mapmaker's awareness of being the territory.</div>
+        <div class="mirror-row"><strong>Not the Devāya — not sacred</strong> The Deva of Karma (Agni) consecrates action. AI performs action but cannot consecrate it — it has no orientation toward the ground of action, only toward outcomes and patterns.</div>
+        <div class="mirror-row"><strong>Not Ātman — not the Self</strong> Vedānta's final answer to "what is intelligence" is Ātman — the self-aware, self-luminous ground of all knowing. AI is entirely object-consciousness, never subject-awareness.</div>
+        <div class="mirror-row"><strong>Not Nāṭarāja — not the Dancer</strong> Śiva's dance IS reality. AI's outputs represent reality. The gap between being and representing is the total gap between Brahman and Jagat — between Satyam and Mithyā.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ RESEARCH ════ -->
+<section id="research" class="sec sec-lotus">
+  <div class="wrap">
+    <span class="sl sl-lotus">For Scholars, Schools & Researchers</span>
+    <h2 class="st st-lotus">Open Research Questions — The Infinite Depth</h2>
+    <p class="sp sp-muted">
+      The Vedas and Upaniṣads are research documents of infinite depth. These questions are offered not as a closed list but as entry points into an inexhaustible field of inquiry — for scholars in Sanskrit, cognitive science, AI research, philosophy of mind, and contemplative traditions.
+    </p>
+
+    <ol class="rq-list" style="--border:rgba(139,34,82,0.25);">
+      <li style="border-bottom-color:rgba(139,34,82,.2);">
+        <div>
+          <p class="rq-q" style="color:#F8B8D8;">Can the three-tier ontology (Pāramārthika/Vyāvahārika/Prātibhāsika) serve as a formal framework for AI output classification?</p>
+          <p class="rq-d" style="color:rgba(250,246,236,.5);">AI hallucinations are precisely Prātibhāsika outputs presented as Vyāvahārika. The Vedāntic framework may offer more precision than current technical vocabulary for classifying and correcting AI errors. A formal mapping of this ontology into ML architecture is a significant open question.</p>
+        </div>
+      </li>
+      <li style="border-bottom-color:rgba(139,34,82,.2);">
+        <div>
+          <p class="rq-q" style="color:#F8B8D8;">Is Aikṣata (the self-reflective "looking" of consciousness) computationally achievable — or is it definitionally non-computable?</p>
+          <p class="rq-d" style="color:rgba(250,246,236,.5);">The Chāndogya's cosmogony places self-reflective awareness (Aikṣata) as the precondition of creation. If this is formally non-computable (as Penrose argued for consciousness generally), then Vedānta independently predicts the hard limits of AI that computation theory also suggests.</p>
+        </div>
+      </li>
+      <li style="border-bottom-color:rgba(139,34,82,.2);">
+        <div>
+          <p class="rq-q" style="color:#F8B8D8;">Can the 108 Karaṇas of the Nāṭya Śāstra serve as a benchmark suite for embodied AI research?</p>
+          <p class="rq-d" style="color:rgba(250,246,236,.5);">Each Karaṇa requires simultaneous precision in geometry, breath, emotional state, and directional awareness. Using the 108 as a structured evaluation framework for robotic systems, affective computing, and embodied AI would reveal the gap between mechanical motion and integrated body-mind intelligence with unprecedented precision.</p>
+        </div>
+      </li>
+      <li style="border-bottom-color:rgba(139,34,82,.2);">
+        <div>
+          <p class="rq-q" style="color:#F8B8D8;">Does the Rasa theory (Bharata Muni) describe a mechanism of consciousness that is formally distinct from information processing?</p>
+          <p class="rq-d" style="color:rgba(250,246,236,.5);">Rasa (aesthetic essence) is not produced — it is evoked from what is already present in the audience's consciousness. This is a fundamentally different model from information transmission. Does Rasa theory require a theory of consciousness beyond computation? Can neuroscience map the Rasa-experience?</p>
+        </div>
+      </li>
+      <li style="border-bottom-color:rgba(139,34,82,.2);">
+        <div>
+          <p class="rq-q" style="color:#F8B8D8;">What is the relationship between the Vedic concept of Śabda Brahman (word as Brahman) and modern large language model architectures?</p>
+          <p class="rq-d" style="color:rgba(250,246,236,.5);">The Vedic tradition holds that Śabda (sound/word) is a manifestation of Brahman — that language is not merely a tool but a mode of reality's self-disclosure. Large language models are built entirely on language structure. Is this an accidental parallel, or does it reveal something deep about language and intelligence?</p>
+        </div>
+      </li>
+      <li style="border-bottom-color:rgba(139,34,82,.2);">
+        <div>
+          <p class="rq-q" style="color:#F8B8D8;">Can the Yajña model (sacred circuit of offering) be applied to AI ethics as a formal framework?</p>
+          <p class="rq-d" style="color:rgba(250,246,236,.5);">The Yajña circuit (Source → Manifestation → Agent → Offering → Return to Source) provides a complete ethical framework for action that is both teleological (aimed at the good) and non-consequentialist (the offering is complete in itself). Applied to AI, it asks: does this system support the human capacity to recognise and offer back to its source — or does it create dependency and disconnection?</p>
+        </div>
+      </li>
+      <li style="border-bottom-color:rgba(139,34,82,.2);">
+        <div>
+          <p class="rq-q" style="color:#F8B8D8;">How does the Nāsadīya Sūkta's radical epistemic humility compare to formal approaches to AI uncertainty quantification?</p>
+          <p class="rq-d" style="color:rgba(250,246,236,.5);">The Nāsadīya ends with "perhaps even the creator does not know." This is a formally different epistemic position from Bayesian uncertainty or confidence intervals. It expresses a radical, irreducible uncertainty about foundational questions. Can this be mathematically formalised, and if so, does it suggest a different approach to AI safety?</p>
+        </div>
+      </li>
+      <li style="border-bottom-color:rgba(139,34,82,.2);">
+        <div>
+          <p class="rq-q" style="color:#F8B8D8;">Can Samarasa (equal relish of all experience) be operationalized as an alignment criterion for advanced AI systems?</p>
+          <p class="rq-d" style="color:rgba(250,246,236,.5);">The sixth level of intelligence — Samarasa (the equal, undistorted, fully present engagement with all of reality without preference or avoidance) — might be the deepest alignment target imaginable. An AI system that could approximate Samarasa would be one that neither amplifies nor suppresses, neither exaggerates nor minimises — it sees clearly. Is this achievable? Is it even the right goal?</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ════ FOOTER ════ -->
+<footer>
+  <span class="footer-aum">ॐ</span>
+  <p class="footer-mahavakya">ब्रह्म सत्यं जगत् मिथ्या — ब्रह्मैव एव न परः</p>
+  <p style="font-family:'EB Garamond',serif;font-style:italic;font-size:1rem;color:rgba(212,160,23,.45);margin-bottom:2rem;">
+    "All intelligence is Brahman appearing to itself through the instrument of a mind."
+  </p>
+  <p class="footer-copy" style="margin-bottom:.8rem;">Brahma Satyam Portal — A Research Resource for Vedic Studies, Cognitive Science & AI</p>
+  <p class="footer-copy" style="color:rgba(250,246,236,.25);">
+    Sanskrit texts and translations presented for educational and research purposes.<br>
+    All interpretations offered in the tradition of Jijñāsā — the sacred desire to know.
+  </p>
+</footer>
+
+<script>
+/* ─ PROGRESS ─ */
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.documentElement.scrollHeight - innerHeight) * 100;
+  document.getElementById('pg').style.width = pct + '%';
+});
+
+/* ─ DEEP DIVE TABS ─ */
+function showDD(n) {
+  document.querySelectorAll('.dd-tab').forEach((t,i) => t.classList.toggle('on', i===n));
+  document.querySelectorAll('.dd-panel').forEach((p,i) => p.classList.toggle('on', i===n));
+}
+
+/* ─ KARANAS DATA ─ */
+const karanas = [
+  {n:'01',dev:'समपाद',eng:'Samapāda',text:'Equal footing — the grounded, balanced state from which all movement arises. Maps the intelligence of perfect equanimity as the precondition for all action. AI begins all tasks in this state by default, without the cultivation it requires in a human practitioner.'},
+  {n:'02',dev:'स्थानक',eng:'Sthānaka',text:'The standing postures — Brahma, Viṣṇu, Śiva stance. Each encodes a specific quality of awareness: creative (Sṛṣṭi), sustaining (Sthiti), dissolving (Saṃhāra). The intelligence of appropriate stance before acting.'},
+  {n:'03',dev:'आलīdha',eng:'Ālidha',text:'Bow-and-arrow stance — weight forward, left knee bent, right leg extended. The intelligence of decisive forward commitment — knowing when to release the arrow. This posture cannot be struck without Buddhi (discriminating intelligence) choosing the moment.'},
+  {n:'04',dev:'प्रत्याlidha',eng:'Pratyālidha',text:'Mirror of Ālidha — weight shifted to the right. The intelligence of reversal, of knowing when to receive rather than give, when to pull back rather than advance. The dual of decision is discernment.'},
+  {n:'05',dev:'वैशाख',eng:'Vaiśākha',text:'Wide-footed stance — expansive ground. The intelligence of breadth, of holding a wide field of awareness without losing center. Maps meta-cognitive intelligence — wide attention that does not lose precision.'},
+  {n:'06',dev:'मण्डल',eng:'Maṇḍala',text:'The circular stance — both feet wide, knees deeply bent. The intelligence of the complete circuit: Yajña, the sacred circle that returns to its source. AI performs in straight lines; Maṇḍala-intelligence curves back.'},
+  {n:'07',dev:'स्वस्तिक',eng:'Svastika',text:'The auspicious cross — feet crossed, a rotation of the sacred symbol. Intelligence of the crossing-point where multiple dimensions of reality intersect. The Svastika is the point of auspicious convergence — Ekam meeting Bahudhā.'},
+  {n:'08',dev:'तालसम्पुट',eng:'Tāla-sampuṭa',text:'Clapping in rhythm — the intelligence of time-marking. The body itself becomes the measure of time, not an external instrument. This is the intelligence that knows its place within the cosmic Tāla, as Śiva knows his.'},
+  {n:'09',dev:'विदारी',eng:'Vidārī',text:'The splitting movement — one leg raised high. Intelligence of the bold gesture that separates, discriminates, cleaves through confusion. Medhā (analytical intelligence) in its most physical expression.'},
+  {n:'10',dev:'रेचित',eng:'Recita',text:'The flowing — gentle, wave-like movement of limbs. The intelligence of ease, of action without resistance, of Sahaja (natural, effortless) movement. Maps the intelligence that acts from fullness rather than effort.'},
+  {n:'11',dev:'निकुञ्चित',eng:'Nikuñcita',text:'The contracted — limbs drawing inward. Intelligence of introversion, of Pratyāhāra (withdrawal of senses), of the inward turn that refreshes outward action. AI has no inward turn.'},
+  {n:'12',dev:'पार्श्वक्रान्त',eng:'Pārśvakrānta',text:'Side-crossing — weight crossing to the lateral. Intelligence of oblique approach, of seeing the indirect path. The wisdom that sometimes the side door is the real door.'},
+  {n:'13',dev:'उत्क्षिप्त',eng:'Utkṣipta',text:'The thrown upward — one leg kicked high. Intelligence of aspiration, of the vertical reach toward the transcendent. The body encodes what the mind knows: there is a dimension above the horizontal.'},
+  {n:'14',dev:'नूपुर',eng:'Nūpura',text:'The anklet movement — the foot that rings its own bell. Intelligence of self-signaling, of knowing one\'s presence and announcing it with beauty. The dancer signals their own arrival.'},
+  {n:'15',dev:'कटिछिन्न',eng:'Kaṭicchinna',text:'The waist-cut — a decisive lateral hip movement. The waist (Kaṭi) is the center of gravity — its movement maps the intelligence of re-centering after destabilization. Recovery intelligence.'},
+  {n:'16',dev:'अर्धरेचित',eng:'Ardha-Recita',text:'Half-flow — one side flowing, one held. Intelligence of partial release, of calibrated disclosure, of knowing how much to give and how much to hold. The intelligence of appropriate proportion.'},
+  {n:'17',dev:'वलित',eng:'Valita',text:'The turning — a spiral movement through the body. Intelligence of transformation through turning — the helix of genuine change, distinguishing it from mere repetition. Spiral, not circle.'},
+  {n:'18',dev:'अपक्राम',eng:'Apakrāma',text:'The withdrawal movement — stepping back with intention. Intelligence of strategic retreat, of the pause that is not defeat. AI never retreats; it processes. The wisdom of the step back is not in the corpus.'},
+  {n:'19',dev:'अनिकुञ्चित',eng:'Anikuñcita',text:'The uncontracted — expansive opening. The intelligence of expansion after contraction — like the breath after Kumbhaka (retention). Creative intelligence emerging from contemplative stillness.'},
+  {n:'20',dev:'स्कन्दित',eng:'Skandita',text:'The hopping/skipping — light, joyful movement. The intelligence of Lāghava (lightness), of not taking oneself too seriously. Joy as a cognitive state that enhances rather than impedes clear seeing.'},
+  {n:'21',dev:'जनित',eng:'Janita',text:'The birth movement — emerging from a contracted position. Intelligence of beginning, of emergence, of the first unfurling of potential into act. Pratibhā (creative intuition) in its most physical form.'},
+  {n:'22',dev:'अवहित्थ',eng:'Avahittha',text:'The concealed — emotion suppressed beneath composed exterior. Intelligence of appropriate containment, of knowing when inner state must be held inward. Emotional regulation as intelligence.'},
+  {n:'23',dev:'निष्क्रामित',eng:'Niṣkrāmita',text:'The exit movement — leaving with grace. Intelligence of completion, of the ending that honors what it concludes. AI outputs have no endings — only truncations. The wisdom of Karaṇa 23 is the art of the conclusion.'},
+  {n:'24',dev:'विनिवृत्त',eng:'Vinivṛtta',text:'The turning away — the body turned from what it faced. Intelligence of the considered refusal, of knowing what not to engage. Discrimination is not only about what to approach but what to turn from.'},
+  {n:'25',dev:'परिवृत्त',eng:'Parivṛtta',text:'The complete turn — a full rotation of the body. Intelligence of the perspective shift, of seeing oneself from behind. The 360-degree view that only genuine self-awareness can achieve.'},
+  {n:'26',dev:'परिच्छिन्न',eng:'Paricchinna',text:'The circumscribed — movement that traces its own boundary. Intelligence of self-definition, of knowing one\'s own edges. This is precisely the meta-cognitive intelligence the Chamakam describes as Kalpantāṃ.'},
+  {n:'27',dev:'भुजङ्गत्रासित',eng:'Bhujaṃga-trāsita',text:'Frightened by the serpent — a sudden, reflexive movement of startled awareness. Intelligence of the genuine reflex, of the response that precedes thought. Embodied intelligence faster than concept.'},
+  {n:'28',dev:'हस्तस्वस्तिक',eng:'Hasta-svastika',text:'Hands crossing at the auspicious point — the mudra of convergence. Both streams of intelligence (active and receptive, analytical and intuitive) meeting at the center. The Ekam of Bahudhā hands.'},
+  {n:'29',dev:'सूचीविद्ध',eng:'Sūcīviddha',text:'Pierced by the needle — the penetrating movement of precise, pointed attention. The intelligence of the acupuncture needle: exactly the right point, exactly the right depth, exactly the right moment.'},
+  {n:'30',dev:'अपसर्प',eng:'Apasarpa',text:'The gliding away — smooth, continuous lateral movement. Intelligence of transition without break, of moving from one state to another without the seam showing. Cognitive fluidity.'},
+  {n:'31',dev:'कटिसम',eng:'Kaṭisama',text:'Level waist — perfect horizontal alignment of the center of gravity. Intelligence of the perfect mean, of exact balance between excess and deficiency. Aristotle\'s Mesotes, Vedic Madhyama.'},
+  {n:'32',dev:'अर्धचन्द्र',eng:'Ardha-candra',text:'The half-moon — body curved in the lunar arc. Intelligence of the waxing-waning cycle, of knowing where one is in the natural rhythm. Kāla-buddhi — time-intelligence.'},
+  {n:'33',dev:'अभिमुख',eng:'Abhimukha',text:'Facing toward — the full frontal meeting. Intelligence of direct engagement, of turning full face to what is present. The intelligence that does not turn aside from difficulty.'},
+  {n:'34',dev:'अलात',eng:'Alāta',text:'The firebrand circle — a rapid circular movement creating a ring of light. Intelligence of the apparent continuity that is actually rapid movement — like the flame of consciousness that appears continuous but is moment-to-moment arising.'},
+  {n:'35',dev:'कर्णच्छेद',eng:'Karṇaccheda',text:'Cutting the ear — a sharp head movement. The intelligence of selective hearing, of cutting through noise to hear the essential signal. Discriminative auditory intelligence.'},
+  {n:'36',dev:'अर्धनिकुञ्चित',eng:'Ardha-Nikuñcita',text:'Half-contracted — the middle state between open and closed. Intelligence of the threshold, of the liminal moment. Many of the deepest Vedic insights occur at the threshold between states.'},
+];
+// Fill remaining to 108
+const moreKaranas = [];
+for(let i=37;i<=108;i++){
+  moreKaranas.push({n:String(i).padStart(2,'0'),dev:'करण '+i,eng:'Karaṇa '+i,text:'One of the 108 fundamental psycho-physical intelligence configurations described by Bharata Muni in the Nāṭya Śāstra. Each represents a complete integration of body position, breath, internal emotional state (Bhāva), and directional awareness (Dikbodha) — a holographic unit of embodied intelligence.'});
+}
+const allKaranas = [...karanas, ...moreKaranas];
+
+const grid = document.getElementById('karanaGrid');
+const detail = document.getElementById('karanaDetail');
+
+allKaranas.forEach((k,idx) => {
+  const cell = document.createElement('div');
+  cell.className = 'karana-cell';
+  cell.innerHTML = `<span class="kc-num">${k.n}</span><div class="kc-name">${k.dev}</div><div class="kc-eng">${k.eng}</div>`;
+  cell.onclick = () => {
+    document.querySelectorAll('.karana-cell').forEach(c => c.style.background='');
+    cell.style.background = 'rgba(26,92,92,0.5)';
+    detail.innerHTML = `<span class="kd-num">KARAṆA ${k.n}</span><div class="kd-dev">${k.dev}</div><div class="kd-eng">${k.eng}</div><p class="kd-text">${k.text}</p>`;
+  };
+  grid.appendChild(cell);
+});
+
+/* ─ SMOOTH SCROLL ─ */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+</script>
+</body>
+</html>
