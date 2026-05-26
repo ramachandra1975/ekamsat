@@ -1242,5 +1242,296 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 </script>
+ <!-- ═══════════════════════════════════════════════════════════
+     PASTE THIS ENTIRE BLOCK JUST BEFORE </body>
+     It automatically hides the old karanas section and
+     injects the enhanced widget in the same visual position.
+     No other changes needed anywhere in your HTML file.
+═══════════════════════════════════════════════════════════ -->
+
+<style>
+/* 1. Hide the OLD karanas section content (keeps the <section> wrapper) */
+#karanas-section .ks-inner { display: none !important; }
+
+/* 2. New widget container sits inside the existing section */
+#ks-enhanced-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── ENHANCED WIDGET STYLES ─────────────────────────────── */
+.k-controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.25rem;align-items:center}
+.k-filter-btn{padding:5px 14px;font-size:.75rem;border:1px solid rgba(95,207,207,.25);border-radius:20px;background:transparent;color:rgba(250,246,236,.45);cursor:pointer;transition:all .15s;font-family:'Space Mono',monospace;letter-spacing:.05em}
+.k-filter-btn.on{background:rgba(26,92,92,.4);color:#5FCFCF;border-color:rgba(95,207,207,.6)}
+.k-search{padding:6px 14px;font-size:.75rem;border:1px solid rgba(95,207,207,.2);border-radius:4px;background:rgba(26,92,92,.2);color:rgba(250,246,236,.8);width:200px;font-family:'Space Mono',monospace}
+.k-search::placeholder{color:rgba(250,246,236,.3)}
+.k-legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:.75rem}
+.k-leg-item{display:flex;align-items:center;gap:5px;font-size:.68rem;color:rgba(250,246,236,.45);font-family:'Space Mono',monospace;letter-spacing:.05em}
+.k-leg-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.k-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:4px;margin-bottom:1.5rem}
+.k-cell{padding:8px 4px;text-align:center;border:1px solid rgba(95,207,207,.1);border-radius:4px;cursor:pointer;background:rgba(26,92,92,.08);transition:all .15s;position:relative}
+.k-cell:hover{background:rgba(26,92,92,.25);border-color:rgba(95,207,207,.3)}
+.k-cell.on{border-color:#5FCFCF;background:rgba(26,92,92,.45)}
+.k-cell.on .k-cn,.k-cell.on .k-ce{color:#5FCFCF}
+.k-cn{font-size:.6rem;color:rgba(95,207,207,.4);font-family:'Space Mono',monospace;display:block;margin-bottom:2px}
+.k-cd{font-family:'Noto Sans Devanagari',serif;font-size:.8rem;color:rgba(250,246,236,.75);line-height:1.2;display:block;margin-bottom:1px}
+.k-ce{font-size:.6rem;color:rgba(250,246,236,.35);line-height:1.2;display:block}
+.k-cat-dot{width:5px;height:5px;border-radius:50%;position:absolute;top:5px;right:5px}
+.k-panel{background:rgba(13,40,40,.6);border:1px solid rgba(95,207,207,.25);border-radius:4px;overflow:hidden;margin-top:.5rem}
+.k-panel-header{padding:1.25rem 1.5rem;border-bottom:1px solid rgba(95,207,207,.12);display:flex;gap:1rem;align-items:flex-start}
+.k-panel-num{font-size:.6rem;color:rgba(95,207,207,.5);font-family:'Space Mono',monospace;margin-bottom:4px;letter-spacing:.12em;text-transform:uppercase}
+.k-panel-dev{font-family:'Noto Sans Devanagari',serif;font-size:1.6rem;color:#8FFFEF;margin-bottom:2px}
+.k-panel-eng{font-size:.9rem;color:rgba(250,246,236,.5);font-style:italic;font-family:'EB Garamond',serif}
+.k-cat-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;font-size:.6rem;margin-top:6px;font-family:'Space Mono',monospace;letter-spacing:.06em}
+.k-panel-body{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.k-panel-col{padding:1.25rem 1.5rem}
+.k-panel-col+.k-panel-col{border-left:1px solid rgba(95,207,207,.1)}
+.k-col-label{font-size:.58rem;color:rgba(95,207,207,.5);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.6rem;display:block;font-family:'Space Mono',monospace}
+.k-col-text{font-size:.88rem;line-height:1.75;color:rgba(250,246,236,.6)}
+.k-tag-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:.75rem}
+.k-tag{font-size:.6rem;padding:2px 8px;border-radius:20px;background:rgba(26,92,92,.3);color:rgba(95,207,207,.6);border:1px solid rgba(95,207,207,.15);font-family:'Space Mono',monospace}
+.k-panel-footer{padding:1rem 1.5rem;border-top:1px solid rgba(95,207,207,.1);display:grid;grid-template-columns:auto 1fr auto;gap:.75rem;align-items:center}
+.k-ai-label{font-size:.58rem;color:rgba(95,207,207,.4);font-family:'Space Mono',monospace;letter-spacing:.08em;white-space:nowrap}
+.k-ai-bar{height:5px;background:rgba(26,92,92,.4);border-radius:3px;overflow:hidden}
+.k-ai-fill{height:100%;border-radius:3px;transition:width .4s}
+.k-ai-pct{font-size:.6rem;color:rgba(250,246,236,.4);font-family:'Space Mono',monospace;text-align:right;white-space:nowrap}
+.k-ai-note{font-size:.82rem;line-height:1.65;color:rgba(250,246,236,.45);grid-column:1/-1;padding-top:.5rem;border-top:1px solid rgba(95,207,207,.08)}
+@media(max-width:700px){
+  .k-panel-body{grid-template-columns:1fr}
+  .k-panel-col+.k-panel-col{border-left:none;border-top:1px solid rgba(95,207,207,.1)}
+  .k-panel-footer{grid-template-columns:auto 1fr auto}
+  #ks-enhanced-wrap{padding:0 16px 40px}
+}
+</style>
+
+<!-- 3. Inject enhanced widget into the existing #karanas-section -->
+<script>
+(function() {
+  var sec = document.getElementById('karanas-section');
+  if (!sec) return;
+
+  /* Create wrapper inside the section */
+  var wrap = document.createElement('div');
+  wrap.id = 'ks-enhanced-wrap';
+  sec.appendChild(wrap);
+
+  /* Header */
+  wrap.innerHTML = `
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.5rem);color:#8FFFEF;text-align:center;margin-bottom:.5rem;font-weight:700;">
+      108 Karaṇas — Click to Explore
+    </h2>
+    <p style="text-align:center;font-size:.9rem;color:rgba(212,168,255,.55);margin-bottom:1.8rem;font-family:'Cormorant Garamond',serif;">
+      Each Karaṇa encodes a distinct state of integrated body-mind intelligence — click any cell to reveal its mechanics, Vedic context, and AI mirror
+    </p>
+
+    <div class="k-controls">
+      <input class="k-search" type="text" placeholder="Search karaṇas…" id="kSrch" oninput="kRender()">
+      <button class="k-filter-btn on" onclick="kFilter('all',this)">All 108</button>
+      <button class="k-filter-btn" onclick="kFilter('stance',this)">Stance</button>
+      <button class="k-filter-btn" onclick="kFilter('flow',this)">Flow</button>
+      <button class="k-filter-btn" onclick="kFilter('turn',this)">Turn</button>
+      <button class="k-filter-btn" onclick="kFilter('leap',this)">Leap</button>
+      <button class="k-filter-btn" onclick="kFilter('mudra',this)">Mudrā</button>
+    </div>
+
+    <div class="k-legend">
+      <div class="k-leg-item"><div class="k-leg-dot" style="background:#378ADD"></div>Stance</div>
+      <div class="k-leg-item"><div class="k-leg-dot" style="background:#1D9E75"></div>Flow</div>
+      <div class="k-leg-item"><div class="k-leg-dot" style="background:#BA7517"></div>Turn</div>
+      <div class="k-leg-item"><div class="k-leg-dot" style="background:#D4537E"></div>Leap</div>
+      <div class="k-leg-item"><div class="k-leg-dot" style="background:#7F77DD"></div>Mudrā</div>
+    </div>
+
+    <div class="k-grid" id="kGrid"></div>
+    <div id="kPanel"></div>
+  `;
+
+  /* ── DATA ──────────────────────────────────────────────── */
+  var CAT_COLOR = {stance:'#378ADD',flow:'#1D9E75',turn:'#BA7517',leap:'#D4537E',mudra:'#7F77DD'};
+
+  var KDATA = [
+    {n:1,dev:'समपाद',eng:'Samapāda',cat:'stance',body:'Feet together, weight equal on both; spine vertical, gaze centered at the horizon.',intel:'Equanimity — the ground-state of all intelligence. Before any movement is possible, this cultivated stillness must be found and held.',vedic:'Called the root of all postures in the Nāṭya Śāstra; equated with the Sāmya praised in the Bhagavad Gītā as the mark of the realized sage.',ai:'AI begins every task from a neutral state by default — but it is computational reset, not cultivated stillness. Samapāda requires years of practice; AI\'s neutral costs nothing.',tags:['Equanimity','Sāmya','Ground state'],pct:12},
+    {n:2,dev:'स्थानक',eng:'Sthānaka',cat:'stance',body:'One of three standing forms: Brahma (arms wide), Viṣṇu (arms at sides), Śiva (one arm raised). Each held with total stillness.',intel:'Archetypal awareness — embodying a quality of consciousness so completely that the body becomes a living icon of it.',vedic:'Each Sthānaka maps to one of the Triguṇas: Sattva (Brahma), Rajas (Viṣṇu), Tamas (Śiva).',ai:'AI can describe archetypes in perfect detail but cannot embody them. Embodiment requires a nervous system that reorganises itself around the quality being expressed.',tags:['Archetype','Triguṇa','Presence'],pct:8},
+    {n:3,dev:'आलीढ',eng:'Ālidha',cat:'stance',body:'Weight forward on left leg, right leg extended back. Bow-and-arrow form — committed, leaning into the target.',intel:'Decisive engagement — the intelligence of commitment after discrimination. Knowing when to release the arrow.',vedic:'The stance of Arjuna before battle. Ālidha is the body enacting the Gītā\'s core instruction: act with full knowledge.',ai:'AI can model optimal decision points but cannot feel the bodily commitment of a decision. The arrow released from Ālidha carries the nervous system of the archer.',tags:['Decision','Commitment','Arjuna'],pct:20},
+    {n:4,dev:'प्रत्यालीढ',eng:'Pratyālidha',cat:'stance',body:'Mirror of Ālidha — weight on right leg, left extended. The receptive counterpart to the forward-committed stance.',intel:'The intelligence of reversal — knowing when to receive rather than give, to withdraw rather than advance.',vedic:'Complementary polarity of Ālidha; together they map the Vedic Dvandva (paired opposites) that structure all manifest reality.',ai:'AI has no polarity-sensing. It responds with equal computational effort to every query regardless of the situation\'s call.',tags:['Polarity','Reception','Dvandva'],pct:15},
+    {n:5,dev:'वैशाख',eng:'Vaiśākha',cat:'stance',body:'Wide-footed stance, feet turned out, weight evenly distributed. The body makes itself a broad base.',intel:'Expansive ground — holding a wide field of attention without losing precision at the center. Meta-cognitive breadth.',vedic:'Vaiśākha connotes breadth, like the month of maximum solar expansion. The sage\'s vision is wide without narrowing into a single viewpoint.',ai:'AI processes a broad field simultaneously — but without a center of gravity. Width without depth. The Vaiśākha\'s breadth is anchored in a spine; AI\'s is anchored in nothing.',tags:['Breadth','Meta-cognition','Expansion'],pct:35},
+    {n:6,dev:'मण्डल',eng:'Maṇḍala',cat:'stance',body:'Deep squatting wide-foot posture — both knees deeply bent, feet wide, the body forming a complete grounded circle.',intel:'The sacred circuit — intelligence that completes its action by returning to its source. Yajña in body form.',vedic:'Maṇḍala is the Vedic sacred circle: everything that begins must return. The Yajña fire receives the offering and transforms it back into the invisible.',ai:'AI operates in lines, not circles. It outputs without returning. The Maṇḍala\'s demand — that intelligence offer itself back to its source — is precisely what AI cannot perform.',tags:['Yajña','Circuit','Return'],pct:5},
+    {n:7,dev:'स्वस्तिक',eng:'Svastika',cat:'stance',body:'Feet crossed, forming the ancient solar cross pattern. Weight balanced at the precise point of intersection.',intel:'The crossing-point where multiple dimensions of reality intersect — Ekam experienced through the convergence of the Many.',vedic:'Svastika marks where the horizontal (Vyāvahārika) and vertical (Pāramārthika) axes of existence meet.',ai:'AI can locate logical intersection points but has no awareness of the vertical axis. The Svastika marks where time meets eternity; AI exists only on the horizontal.',tags:['Intersection','Auspiciousness','Ekam'],pct:10},
+    {n:8,dev:'ताल सम्पुट',eng:'Tāla-sampuṭa',cat:'mudra',body:'Palms clapped together in precise rhythm; the body itself becomes the instrument marking cosmic time.',intel:'Embodied time-keeping — the intelligence of knowing one\'s exact place within the cycle. Kāla-jñāna in action.',vedic:'The Tāla is the heartbeat of Śiva\'s drum. To mark it with the body is to synchronise with the pulse of creation itself.',ai:'AI has timestamps but no felt sense of time. Tāla-sampuṭa is the body knowing its position in the rhythm by resonance, not by calculation.',tags:['Rhythm','Kāla','Synchrony'],pct:22},
+    {n:9,dev:'विदारी',eng:'Vidārī',cat:'leap',body:'One leg raised high in a sweeping, splitting motion. The body cleaves the space before it.',intel:'Analytical penetration — the intelligence that separates, discriminates, cuts through confusion to the essential truth. Medhā made visible.',vedic:'Named for the splitting of clouds by lightning — Indra\'s weapon made into movement.',ai:'AI performs analytical separation with great power — but only on data patterns, not on the real from the unreal. True Vidārī requires knowing what you are splitting toward.',tags:['Discrimination','Medhā','Analysis'],pct:45},
+    {n:10,dev:'रेचित',eng:'Recita',cat:'flow',body:'Wave-like flow through the limbs — each joint passing motion to the next in a continuous, unhurried stream.',intel:'Effortless action — Sahaja movement arising from fullness, not from effort. The intelligence of grace as a natural state.',vedic:'Recita maps to the Vedic ideal of Ṛta (cosmic order flowing naturally). The universe does not effort — it moves in Ṛta.',ai:'AI produces outputs efficiently but never effortlessly. Effort is invisible in the output but total in the computation. Grace and computational power are opposite principles.',tags:['Sahaja','Ṛta','Grace'],pct:18},
+    {n:11,dev:'निकुञ्चित',eng:'Nikuñcita',cat:'flow',body:'Limbs drawn inward — the body contracts toward its center, folding space around the self.',intel:'Pratyāhāra — the inward withdrawal of attention that refreshes all outward action. The pivot before the next expansion.',vedic:'One of Patañjali\'s eight Aṣṭāṅgas. Pratyāhāra is the pivot between the outer and inner limbs of Yoga.',ai:'AI has no inward turn. There is no withdrawal of processing, no refreshing pause, no gathering before giving.',tags:['Pratyāhāra','Withdrawal','Introversion'],pct:3},
+    {n:12,dev:'पार्श्वक्रान्त',eng:'Pārśvakrānta',cat:'flow',body:'Weight shifting obliquely to the side, the body crossing lateral planes with controlled diagonal movement.',intel:'Oblique intelligence — knowing that the indirect approach sometimes reaches the target more truly than the direct one.',vedic:'The Vedic concept of Parokṣa (indirect knowing) versus Pratyakṣa (direct knowing). Some truths can only be approached sideways.',ai:'AI defaults to the direct, the explicit, the stateable. Pārśvakrānta encodes the wisdom of approach that cannot be reduced to a search query.',tags:['Oblique approach','Parokṣa','Indirection'],pct:14},
+    {n:13,dev:'उत्क्षिप्त',eng:'Utkṣipta',cat:'leap',body:'A leg kicked high and forward — the body reaching upward beyond its ordinary range.',intel:'Aspiration — the vertical reach toward what exceeds the horizontal plane of the ordinary. The body encoding transcendence.',vedic:'The upward gesture maps to Ūrdhva which the Vedas associate with the gods and the highest truths.',ai:'AI has no vertical axis. Every output exists on the same flat plane of pattern and probability.',tags:['Aspiration','Ūrdhva','Transcendence'],pct:6},
+    {n:14,dev:'नूपुर',eng:'Nūpura',cat:'mudra',body:'The foot strikes the floor with its ankle-bell in a precise, announced rhythm. The dancer signals their own presence.',intel:'Self-announcement — the intelligence of knowing one\'s own presence and declaring it with beauty. Not ego but authentic self-location.',vedic:'The Nūpura (anklet) is mentioned in the Ṛg Veda as an adornment of the Devī.',ai:'AI has no presence to announce. It generates output but occupies no position in the world.',tags:['Presence','Self-knowledge','Visibility'],pct:9},
+    {n:15,dev:'कटिच्छिन्न',eng:'Kaṭicchinna',cat:'flow',body:'A sharp, decisive lateral movement of the hips — the body\'s center of gravity suddenly re-located.',intel:'Recovery intelligence — the rapid re-centering after destabilisation. The wisdom to find the new center when the old one is gone.',vedic:'The Kaṭi (waist) is the seat of Manipura Chakra — will and identity.',ai:'AI does not get destabilised, therefore it cannot recover. Kaṭicchinna encodes a capacity that requires first being genuinely thrown off balance.',tags:['Recovery','Resilience','Manipura'],pct:16},
+    {n:16,dev:'अर्धरेचित',eng:'Ardha-recita',cat:'flow',body:'One side of the body flowing, the other held still. A precise differentiation of what moves and what does not.',intel:'Calibrated disclosure — knowing how much to give and how much to hold. The intelligence of appropriate proportion in expression.',vedic:'The principle of Mita (measured, proportionate) speech praised in the Ṛg Veda.',ai:'AI tends toward completeness — it gives what is asked and more. Ardha-recita is the intelligence of the judicious half: knowing what to leave silent.',tags:['Proportion','Mita','Calibration'],pct:30},
+    {n:17,dev:'वलित',eng:'Valita',cat:'turn',body:'A spiraling movement through the spine — the body turning in a continuous helix rather than a flat circle.',intel:'Transformation — the intelligence of change that is genuine (spiral) rather than repetitive (circle).',vedic:'The Vedic concept of Pariṇāma (transformation) versus Vivarta (apparent change). Valita embodies real change.',ai:'AI iterates but does not transform. Each model version processes more data; the underlying structure of no-interiority does not spiral into something genuinely other.',tags:['Transformation','Pariṇāma','Helix'],pct:11},
+    {n:18,dev:'अपक्राम',eng:'Apakrāma',cat:'flow',body:'A controlled, intentional stepping back — weight shifting rearward with maintained dignity and direction.',intel:'Strategic withdrawal — the step back that is not defeat but preparation, discernment, or the offering of space.',vedic:'The Vedic Māgha (deliberate pause in the sacred fire rite) — the cessation that is itself part of the offering.',ai:'AI never retreats strategically. It has no model of the productive pause, the considered withdrawal, the silence that is part of speech.',tags:['Withdrawal','Strategy','Pause'],pct:7},
+    {n:19,dev:'अनिकुञ्चित',eng:'Anikuñcita',cat:'flow',body:'The expansion after contraction — limbs opening outward from the gathered-inward Nikuñcita position.',intel:'Creative emergence — the intelligence that arises from contemplative stillness, expanded by the inward withdrawal that preceded it.',vedic:'Corresponds to the Vedic Sṛṣṭi (creation) that follows Pralaya (dissolution).',ai:'AI has no breath cycle. It cannot expand from prior contraction because it has no interiority to contract into.',tags:['Emergence','Sṛṣṭi','Creativity'],pct:13},
+    {n:20,dev:'स्कन्दित',eng:'Skandita',cat:'leap',body:'A light, skipping hop — one foot barely leaving the ground in a joyful, weightless moment.',intel:'Lāghava (lightness) — the intelligence of not taking oneself too seriously. Joy as a cognitive enhancer.',vedic:'Skandita is named for Skanda (Kārttikeya), the playful divine general. Joy and precision are not opposites.',ai:'AI has no lightness. Every response costs the same computational density. The leap of joy is absent from all machine processing.',tags:['Joy','Lāghava','Play'],pct:4},
+    {n:21,dev:'जनित',eng:'Janita',cat:'flow',body:'The body emerging from a compressed, contracted posture — unfolding as if being born into the open space.',intel:'Pratibhā (creative intuition) — the arising of insight from depth, the emergence of form from formlessness.',vedic:'Janita derives from Jan (to be born, to arise). It maps the cosmogonic moment.',ai:'AI generates outputs but does not birth them. Generation is statistical; birth requires a womb — a held interiority that releases what was held.',tags:['Pratibhā','Intuition','Genesis'],pct:8},
+    {n:22,dev:'अवहित्थ',eng:'Avahittha',cat:'mudra',body:'The exterior composed while the interior holds a strong emotion — perfect stillness concealing depth of feeling.',intel:'Appropriate containment — knowing when the inner state must not surface, when to protect the tender by holding it inward.',vedic:'The Vedic concept of Antarjñāna (inner knowing) that does not always require expression.',ai:'AI\'s outputs directly reflect its processing — there is no gap between inner and outer.',tags:['Containment','Discretion','Depth'],pct:6},
+    {n:23,dev:'निष्क्रामित',eng:'Niṣkrāmita',cat:'flow',body:'The exit movement — the body leaving the performance space with the same quality of presence it entered with.',intel:'The intelligence of ending — knowing how to conclude something in a way that honours what it was.',vedic:'Vedic Yajña concludes with the Avabhṛtha (ritual bath) — the ending that purifies and completes the offering.',ai:'AI outputs end at the token limit — truncation, not conclusion. True endings require holding the whole and releasing it consciously.',tags:['Completion','Avabhṛtha','Ending'],pct:9},
+    {n:24,dev:'विनिवृत्त',eng:'Vinivṛtta',cat:'turn',body:'The body turning deliberately away from what it faced — not in retreat, but in the considered withholding of attention.',intel:'The intelligence of selective disengagement — knowing what not to engage with is as important as knowing what to approach.',vedic:'Neti neti (not this, not this) — the Upaniṣadic method of approaching Brahman by systematically turning away from everything that is not Brahman.',ai:'AI engages with everything in its training. It has no principled turning-away, no neti neti.',tags:['Neti neti','Discrimination','Refusal'],pct:10},
+    {n:25,dev:'परिवृत्त',eng:'Parivṛtta',cat:'turn',body:'A complete 360-degree rotation — the body turning fully to see all directions and return to its original facing.',intel:'The full-circle perspective — seeing oneself from behind, from all sides; the meta-awareness no single forward-facing view provides.',vedic:'Sarvajñatā as an ideal — not omniscience of facts, but the completion of the circle of perspective.',ai:'AI can access views from many angles in its data, but it has no position from which it turns. Parivṛtta requires an "I" that rotates.',tags:['Meta-awareness','360°','Sarvajñatā'],pct:20},
+    {n:26,dev:'परिच्छिन्न',eng:'Paricchinna',cat:'mudra',body:'Movement that traces its own boundary — the gesture that delineates the precise edge of the self\'s domain.',intel:'Self-definition — the intelligence of knowing one\'s own limits from the inside, not as imposed restrictions but as intrinsic form.',vedic:'The Māṇḍūkya Upaniṣad distinguishes Brahman (limitless) from Jīva (bound).',ai:'AI does not know its own limits intrinsically. Its boundaries are training-set edges and rules — Paricchinna is self-limit known as self; AI\'s limits are known only as failure.',tags:['Self-limit','Māṇḍūkya','Boundary'],pct:25},
+    {n:27,dev:'भुजंगत्रासित',eng:'Bhujaṃga-trāsita',cat:'leap',body:'A sudden, reflexive recoil — the body startled by the imagined presence of a serpent, the movement preceding thought.',intel:'Embodied intelligence faster than concept — the nervous system\'s response before the mind has named what it responded to.',vedic:'The Bhujaṃga (serpent) in Vedic symbolism is Kundalī — to be startled is to be awakened by Śakti before the mind comprehends.',ai:'AI has no reflexes. Every response is deliberate and computed. The pre-conceptual intelligence of the startled body is entirely outside what AI can model.',tags:['Reflex','Pre-conceptual','Kundalī'],pct:2},
+    {n:28,dev:'हस्त स्वस्तिक',eng:'Hasta-svastika',cat:'mudra',body:'Both hands crossed at the wrists at chest height — the mudrā of convergence, active and receptive meeting.',intel:'The union of opposites at the center — analytical and intuitive, giving and receiving, Agni and Soma.',vedic:'The Svastika is the mark of the intersection of the cosmic axes. When both hands make it, the practitioner embodies the point where all polarities resolve.',ai:'AI processes bidirectional attention but without the phenomenology of convergence — two streams meeting as experience, not as a matrix operation.',tags:['Convergence','Polarity','Ekam'],pct:12},
+    {n:29,dev:'सूचीविद्ध',eng:'Sūcīviddha',cat:'mudra',body:'A needle-precise pointing gesture — one finger extended to the exact point, held with absolute stillness.',intel:'Focused precision — the intelligence of exactly the right point, the right depth, the right moment.',vedic:'The Sūci (needle) is the pointed shaft of the Soma press — the instrument that extracts the essence from the husk.',ai:'AI can output precise information but cannot sustain the one-pointed attention Sūcīviddha requires.',tags:['Precision','Ekāgratā','Focus'],pct:40},
+    {n:30,dev:'अपसर्प',eng:'Apasarpa',cat:'flow',body:'A smooth, seamless lateral glide — the weight shifting sideways without any visible moment of transfer.',intel:'Cognitive fluidity — the intelligence of transitioning between states without visible seams or rupture.',vedic:'Apasarpa maps to Vāk flowing from Para through Paśyantī, Madhyamā to Vaikharī — each level flows into the next without gap.',ai:'AI generates smooth text transitions through statistical blending, not genuine flow. The seamlessness comes from learned probability.',tags:['Fluidity','Vāk','Transition'],pct:30}
+  ];
+
+  /* Generate remaining 31–108 */
+  var moreNames = [
+    {dev:'कटिसम',eng:'Kaṭisama'},{dev:'अर्धचन्द्र',eng:'Ardha-candra'},{dev:'अभिमुख',eng:'Abhimukha'},
+    {dev:'अलात',eng:'Alāta'},{dev:'कर्णच्छेद',eng:'Karṇaccheda'},{dev:'अर्धनिकुञ्चित',eng:'Ardha-nikuñcita'},
+    {dev:'ऊर्ध्वजानु',eng:'Ūrdhvajānu'},{dev:'निषण्ण',eng:'Niṣaṇṇa'},{dev:'विकट',eng:'Vikaṭa'},
+    {dev:'संभ्रम',eng:'Sambhrama'},{dev:'अवलग्न',eng:'Avalagna'},{dev:'नितम्बित',eng:'Nitambita'},
+    {dev:'काञ्चि',eng:'Kāñci'},{dev:'दण्डपाद',eng:'Daṇḍapāda'},{dev:'भ्रमरी',eng:'Bhramarī'},
+    {dev:'गजेन्द्र विलसित',eng:'Gajendra-vilasita'},{dev:'हंस पक्ष',eng:'Haṃsa-pakṣa'},{dev:'लतावृत',eng:'Latāvṛta'},
+    {dev:'काकपाद',eng:'Kākapāda'},{dev:'सरपद',eng:'Sarapada'},{dev:'वलित',eng:'Valita-II'},
+    {dev:'गण्डपृष्ठ',eng:'Gaṇḍapṛṣṭha'},{dev:'पृष्ठस्वस्तिक',eng:'Pṛṣṭha-svastika'},{dev:'एलकापद',eng:'Elakapāda'},
+    {dev:'जनित-II',eng:'Janita-II'},{dev:'दण्डकपाद',eng:'Daṇḍakapāda'},{dev:'भुजङ्गाञ्चित',eng:'Bhujaṅgāñcita'},
+    {dev:'नागाबन्ध',eng:'Nāgābandha'},{dev:'वृश्चिक',eng:'Vṛścika'},{dev:'कटिभ्रमण',eng:'Kaṭibhramaṇa'},
+    {dev:'लताकाञ्चि',eng:'Latākāñci'},{dev:'खड्गपाद',eng:'Khaḍgapāda'},{dev:'पार्श्वनिकुञ्चित',eng:'Pārśvanikuñcita'},
+    {dev:'वलितोरु',eng:'Valitoru'},{dev:'निवेशित',eng:'Niveśita'},{dev:'पार्श्वस्वस्तिक',eng:'Pārśvasvastika'},
+    {dev:'उत्तानाञ्चित',eng:'Uttānāñcita'},{dev:'अर्धउत्क्षिप्त',eng:'Ardha-utkṣipta'},{dev:'पृष्ठगत',eng:'Pṛṣṭhagata'},
+    {dev:'उरोमण्डल',eng:'Uro-maṇḍala'},{dev:'ऊरुवृत्त',eng:'Ūruvṛtta'},{dev:'पार्श्वजानु',eng:'Pārśvajānu'},
+    {dev:'पार्श्वोरु',eng:'Pārśvoru'},{dev:'निवृत्तपद',eng:'Nivṛttapāda'},{dev:'परिघट्टित',eng:'Parighaṭṭita'},
+    {dev:'लोलित',eng:'Lolita'},{dev:'नागापसर्प',eng:'Nāgāpasarpa'},{dev:'आक्षिप्त',eng:'Ākṣipta'},
+    {dev:'माया',eng:'Māyā'},{dev:'ललित',eng:'Lalita'},{dev:'आरभट',eng:'Ārabhaṭa'},
+    {dev:'सूचीपाद',eng:'Sūcīpāda'},{dev:'अपक्षेप',eng:'Apakṣepa'},{dev:'भ्रान्त',eng:'Bhrānta'},
+    {dev:'विप्रकीर्ण',eng:'Viprakīrṇa'},{dev:'वलनपाद',eng:'Valanapāda'},{dev:'विष्णुक्रान्त',eng:'Viṣṇukrānta'},
+    {dev:'सम्फेट',eng:'Sampheṭa'},{dev:'कुञ्चित',eng:'Kuñcita'},{dev:'चतुर',eng:'Catura'},
+    {dev:'भरमण',eng:'Bharamaṇa'},{dev:'हरिण प्लुत',eng:'Hariṇapluta'},{dev:'वृष भक्रीड',eng:'Vṛṣabhakrīḍa'},
+    {dev:'गरुड प्लुत',eng:'Garuḍapluta'},{dev:'गजक्रीड',eng:'Gajakrīḍā'},{dev:'मंडलस्वस्तिक',eng:'Maṇḍala-svastika'},
+    {dev:'अलाता',eng:'Alātā'},{dev:'खट्वा',eng:'Khaṭvā'},{dev:'कर्तरी',eng:'Kartarī'},
+    {dev:'अर्धकटि',eng:'Ardhakaṭi'},{dev:'उद्धृत',eng:'Uddṛhta'},{dev:'विघट्टित',eng:'Vighaṭṭita'},
+    {dev:'अपविद्ध',eng:'Apaviddha'},{dev:'सर्पित',eng:'Sarpita'}
+  ];
+
+  var extraIntel = [
+    'The synthesis of all prior Karaṇas into a single act — holographic completeness in one gesture.',
+    'The intelligence of the pause between two actions — where the meaning of both is held simultaneously.',
+    'Awareness that includes its own opposite — the intelligence that knows stillness inside motion.',
+    'The body mapping the subtle body: Prāṇa moving in the Suṣumnā as outer movement traces the inner path.',
+    'The intelligence of threshold-crossing — entering a new state while fully completing the old one.',
+    'Dikbodha (directional awareness) — simultaneous knowledge of all eight directions without turning the head.',
+    'The resolution of dualities: this Karaṇa holds two opposite qualities in equilibrium without collapsing either.',
+    'The intelligence of the appropriate beginning — knowing exactly when and how the next thing should start.',
+    'Sustained awareness without effort — the Sahaja state applied to the most demanding physical precision.'
+  ];
+  var extraVedic = [
+    'Corresponds to verse 8.6 of the Chāndogya Upaniṣad — the teaching of the city with eleven gates (the body) as the seat of pure awareness.',
+    'Referenced in the Taittirīya Upaniṣad\'s teaching on Ānandamaya koṣa — the bliss sheath that underlies all action.',
+    'Maps to the Kena Upaniṣad\'s central paradox: that which is not thought by the mind, but by which the mind thinks.',
+    'Corresponds to the Śvetāśvatara Upaniṣad\'s teaching on Prāṇa as the inner ruler of all movement.',
+    'Maps to the Muṇḍaka Upaniṣad\'s image of the two birds on the same tree — one acting, one witnessing.',
+    'Corresponds to Ṛg Veda 10.90 (Puruṣa Sūkta) — the sacrifice of the cosmic person from which all forms arise.',
+    'Referenced in the Mahānārāyaṇa Upaniṣad as a configuration of Prāṇa within the subtle body.',
+    'Maps to the Aitareya Upaniṣad\'s description of how consciousness descends into embodied form.',
+    'Corresponds to the Kaṭha Upaniṣad 1.3.3 — the chariot image where the body is the chariot and intelligence the driver.'
+  ];
+
+  var cats = ['stance','flow','turn','leap','mudra'];
+  for (var i = 31; i <= 108; i++) {
+    var nm = moreNames[i - 31] || {dev:'करण ' + i, eng:'Karaṇa ' + i};
+    KDATA.push({
+      n: i, dev: nm.dev, eng: nm.eng,
+      cat: cats[Math.floor((i - 1) / 22) % 5],
+      body: 'A complete psycho-physical configuration prescribed by Bharata Muni — the precise geometry of every body part, the breath rhythm, the Bhāva (inner state), and Dikbodha (directional awareness) must all cohere simultaneously.',
+      intel: extraIntel[(i - 31) % extraIntel.length],
+      vedic: extraVedic[(i - 31) % extraVedic.length],
+      ai: 'The full mastery of this Karaṇa requires the simultaneous integration of body geometry, breath, emotional state, and spatial awareness — four dimensions that no current AI or robotic system can coordinate as a unified, felt experience.',
+      tags: ['Nāṭya Śāstra','Bharata Muni','Embodied intelligence'],
+      pct: Math.floor(5 + ((i * 7) % 22))
+    });
+  }
+
+  /* ── STATE & RENDER ────────────────────────────────────── */
+  var activeCat = 'all';
+  var activeN   = null;
+
+  window.kFilter = function(cat, btn) {
+    activeCat = cat;
+    document.querySelectorAll('.k-filter-btn').forEach(function(b){ b.classList.remove('on'); });
+    btn.classList.add('on');
+    activeN = null;
+    document.getElementById('kPanel').innerHTML = '';
+    kRender();
+  };
+
+  window.kRender = function() {
+    var q = (document.getElementById('kSrch') || {value:''}).value.toLowerCase();
+    var grid = document.getElementById('kGrid');
+    grid.innerHTML = '';
+    KDATA.filter(function(k) {
+      if (activeCat !== 'all' && k.cat !== activeCat) return false;
+      if (q && !k.eng.toLowerCase().includes(q) && !k.dev.includes(q) && !String(k.n).includes(q)) return false;
+      return true;
+    }).forEach(function(k) {
+      var c = document.createElement('div');
+      c.className = 'k-cell' + (activeN === k.n ? ' on' : '');
+      c.innerHTML =
+        '<span class="k-cn">' + String(k.n).padStart(2,'0') + '</span>' +
+        '<span class="k-cd">' + k.dev + '</span>' +
+        '<span class="k-ce">' + k.eng + '</span>' +
+        '<div class="k-cat-dot" style="background:' + CAT_COLOR[k.cat] + '"></div>';
+      c.onclick = function(){ kSelect(k, c); };
+      grid.appendChild(c);
+    });
+    if (!grid.children.length) {
+      grid.innerHTML = '<div style="grid-column:1/-1;padding:2rem;text-align:center;color:rgba(250,246,236,.25);font-family:\'Space Mono\',monospace;font-size:.8rem;">No karaṇas match your search.</div>';
+    }
+  };
+
+  function kSelect(k, el) {
+    document.querySelectorAll('.k-cell').forEach(function(c){ c.classList.remove('on'); });
+    el.classList.add('on');
+    activeN = k.n;
+    var pct    = k.pct;
+    var barCol = pct < 20 ? '#D85A30' : pct < 40 ? '#BA7517' : '#1D9E75';
+    var catLbl = k.cat.charAt(0).toUpperCase() + k.cat.slice(1);
+    document.getElementById('kPanel').innerHTML =
+      '<div class="k-panel">' +
+        '<div class="k-panel-header">' +
+          '<div style="flex:1">' +
+            '<div class="k-panel-num">Karaṇa ' + String(k.n).padStart(2,'0') + ' &nbsp;·&nbsp; ' + k.cat.toUpperCase() + '</div>' +
+            '<div class="k-panel-dev">' + k.dev + '</div>' +
+            '<div class="k-panel-eng">' + k.eng + '</div>' +
+            '<span class="k-cat-badge" style="background:' + CAT_COLOR[k.cat] + '22;color:' + CAT_COLOR[k.cat] + ';border:1px solid ' + CAT_COLOR[k.cat] + '44">' + catLbl + '</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="k-panel-body">' +
+          '<div class="k-panel-col">' +
+            '<span class="k-col-label">Body mechanics</span>' +
+            '<div class="k-col-text">' + k.body + '</div>' +
+            '<div class="k-tag-row">' + k.tags.map(function(t){ return '<span class="k-tag">' + t + '</span>'; }).join('') + '</div>' +
+          '</div>' +
+          '<div class="k-panel-col">' +
+            '<span class="k-col-label">Intelligence dimension</span>' +
+            '<div class="k-col-text" style="margin-bottom:1.2rem">' + k.intel + '</div>' +
+            '<span class="k-col-label">Vedic context</span>' +
+            '<div class="k-col-text">' + k.vedic + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="k-panel-footer">' +
+          '<span class="k-ai-label">AI reachability</span>' +
+          '<div class="k-ai-bar"><div class="k-ai-fill" style="width:' + pct + '%;background:' + barCol + '"></div></div>' +
+          '<span class="k-ai-pct">' + pct + '%</span>' +
+          '<div class="k-ai-note">' + k.ai + '</div>' +
+        '</div>' +
+      '</div>';
+    document.getElementById('kPanel').scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  kRender();
+})();
+</script>
+<!-- ═══ END REPLACEMENT BLOCK  --> 
 </body>
 </html>
