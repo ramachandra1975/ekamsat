@@ -1796,5 +1796,71 @@ k2Render();
 })();
 </script>
 <!-- ═══ END 108 KARANAS WIDGET ═══ -->
+  <style>
+#ks2-wrap{max-width:1200px;margin:0 auto;padding:0 40px 60px}
+.k2-head{font-family:'Cormorant Upright',serif;font-size:clamp(1.6rem,3.5vw,2.4rem);color:#8FFFEF;text-align:center;margin-bottom:.4rem;font-weight:400}
+.k2-sub{text-align:center;font-size:.9rem;color:rgba(143,255,239,.45);margin-bottom:1.8rem;font-family:'EB Garamond',serif;font-style:italic}
+.k2-controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem;align-items:center}
+.k2-fbtn{padding:5px 14px;font-size:.72rem;border:1px solid rgba(95,207,207,.25);border-radius:20px;background:transparent;color:rgba(250,246,236,.4);cursor:pointer;transition:all .15s;font-family:'Space Mono',monospace;letter-spacing:.05em}
+.k2-fbtn.on{background:rgba(26,92,92,.45);color:#5FCFCF;border-color:rgba(95,207,207,.6)}
+.k2-srch{padding:6px 14px;font-size:.72rem;border:1px solid rgba(95,207,207,.2);border-radius:4px;background:rgba(26,92,92,.2);color:rgba(250,246,236,.8);width:190px;font-family:'Space Mono',monospace}
+.k2-srch::placeholder{color:rgba(250,246,236,.25)}
+.k2-legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:.8rem}
+.k2-leg{display:flex;align-items:center;gap:5px;font-size:.68rem;color:rgba(250,246,236,.4);font-family:'Space Mono',monospace;letter-spacing:.05em}
+.k2-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.k2-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(70px,1fr));gap:4px;margin-bottom:1.2rem}
+.k2-cell{padding:7px 3px;text-align:center;border:1px solid rgba(95,207,207,.1);border-radius:3px;cursor:pointer;background:rgba(26,92,92,.07);transition:all .15s;position:relative}
+.k2-cell:hover{background:rgba(26,92,92,.25);border-color:rgba(95,207,207,.3)}
+.k2-cell.on{border-color:#5FCFCF;background:rgba(26,92,92,.45)}
+.k2-cell.on .k2-cn,.k2-cell.on .k2-ce{color:#5FCFCF}
+.k2-cn{font-size:.58rem;color:rgba(95,207,207,.4);font-family:'Space Mono',monospace;display:block;margin-bottom:2px}
+.k2-cd{font-family:'Noto Sans Devanagari',serif;font-size:.78rem;color:rgba(250,246,236,.75);line-height:1.2;display:block;margin-bottom:1px}
+.k2-ce{font-size:.58rem;color:rgba(250,246,236,.3);line-height:1.2;display:block}
+.k2-cdot{width:5px;height:5px;border-radius:50%;position:absolute;top:4px;right:4px}
+.k2-panel{background:rgba(13,40,40,.65);border:1px solid rgba(95,207,207,.25);border-radius:4px;overflow:hidden;margin-top:.5rem}
+.k2-ph{padding:1.2rem 1.5rem;border-bottom:1px solid rgba(95,207,207,.12);display:flex;gap:1rem;align-items:flex-start}
+.k2-pnum{font-size:.58rem;color:rgba(95,207,207,.5);font-family:'Space Mono',monospace;margin-bottom:4px;letter-spacing:.12em;text-transform:uppercase}
+.k2-pdev{font-family:'Noto Sans Devanagari',serif;font-size:1.5rem;color:#8FFFEF;margin-bottom:2px}
+.k2-peng{font-size:.88rem;color:rgba(250,246,236,.45);font-style:italic;font-family:'EB Garamond',serif}
+.k2-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;font-size:.6rem;margin-top:6px;font-family:'Space Mono',monospace;letter-spacing:.06em}
+.k2-body{display:grid;grid-template-columns:1fr 1fr;gap:0}
+@media(max-width:680px){.k2-body{grid-template-columns:1fr}#ks2-wrap{padding:0 16px 40px}}
+.k2-col{padding:1.2rem 1.5rem}
+.k2-col+.k2-col{border-left:1px solid rgba(95,207,207,.1)}
+.k2-clabel{font-size:.58rem;color:rgba(95,207,207,.5);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.5rem;display:block;font-family:'Space Mono',monospace}
+.k2-ctext{font-size:.87rem;line-height:1.75;color:rgba(250,246,236,.6)}
+.k2-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:.7rem}
+.k2-tag{font-size:.6rem;padding:2px 8px;border-radius:20px;background:rgba(26,92,92,.3);color:rgba(95,207,207,.6);border:1px solid rgba(95,207,207,.15);font-family:'Space Mono',monospace}
+.k2-pfoot{padding:1rem 1.5rem;border-top:1px solid rgba(95,207,207,.1);display:grid;grid-template-columns:auto 1fr auto;gap:.75rem;align-items:center}
+.k2-ailabel{font-size:.58rem;color:rgba(95,207,207,.4);font-family:'Space Mono',monospace;letter-spacing:.08em;white-space:nowrap}
+.k2-aibar{height:5px;background:rgba(26,92,92,.4);border-radius:3px;overflow:hidden}
+.k2-aifill{height:100%;border-radius:3px;transition:width .4s}
+.k2-aipct{font-size:.6rem;color:rgba(250,246,236,.4);font-family:'Space Mono',monospace;text-align:right;white-space:nowrap}
+.k2-ainote{font-size:.82rem;line-height:1.65;color:rgba(250,246,236,.45);grid-column:1/-1;padding-top:.5rem;border-top:1px solid rgba(95,207,207,.08)}
+.k2-empty{grid-column:1/-1;padding:2rem;text-align:center;color:rgba(250,246,236,.2);font-family:'Space Mono',monospace;font-size:.75rem}
+</style>
+
+<div id="ks2-wrap">
+  <h2 class="k2-head">108 Karaṇas — Click to Explore</h2>
+  <p class="k2-sub">Each Karaṇa encodes a distinct state of integrated body-mind intelligence — click any cell to reveal its mechanics, Vedic context, and AI mirror</p>
+  <div class="k2-controls">
+    <input class="k2-srch" type="text" placeholder="Search karaṇas…" id="k2Srch" oninput="k2Render()">
+    <button class="k2-fbtn on" onclick="k2Filter('all',this)">All 108</button>
+    <button class="k2-fbtn" onclick="k2Filter('stance',this)">Stance</button>
+    <button class="k2-fbtn" onclick="k2Filter('flow',this)">Flow</button>
+    <button class="k2-fbtn" onclick="k2Filter('turn',this)">Turn</button>
+    <button class="k2-fbtn" onclick="k2Filter('leap',this)">Leap</button>
+    <button class="k2-fbtn" onclick="k2Filter('mudra',this)">Mudrā</button>
+  </div>
+  <div class="k2-legend">
+    <div class="k2-leg"><div class="k2-dot" style="background:#378ADD"></div>Stance</div>
+    <div class="k2-leg"><div class="k2-dot" style="background:#1D9E75"></div>Flow</div>
+    <div class="k2-leg"><div class="k2-dot" style="background:#BA7517"></div>Turn</div>
+    <div class="k2-leg"><div class="k2-dot" style="background:#D4537E"></div>Leap</div>
+    <div class="k2-leg"><div class="k2-dot" style="background:#7F77DD"></div>Mudrā</div>
+  </div>
+  <div class="k2-grid" id="k2Grid"></div>
+  <div id="k2Panel"></div>
+</div>
 </body>
 </html>
