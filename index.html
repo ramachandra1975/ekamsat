@@ -950,6 +950,613 @@ function kSelect(k,el){
 }
 kRender();
 })();
-</script>  
+</script>
+  <!-- ═══════════════════════════════════════════════════════════
+     NĀSADĪYA SŪKTA — STANDALONE INSERT (paste just before </body>)
+     Matches the CSS variables and fonts of the parent Brahma Satyam page.
+═══════════════════════════════════════════════════════════ -->
+
+<style>
+/* ── Nāsadīya-specific styles (all prefixed ns- to avoid collisions) ── */
+
+#nasadiya {
+  background: linear-gradient(170deg, #06080E 0%, #060A10 60%, #080610 100%);
+  padding: 7rem 0 8rem;
+  position: relative;
+  overflow: hidden;
+}
+.ns-cosmos {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 50% 40% at 20% 20%, rgba(184,134,11,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 80% 70%, rgba(204,85,0,0.05) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(26,52,92,0.08) 0%, transparent 70%);
+}
+/* star field */
+.ns-stars {
+  position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+}
+.ns-star {
+  position: absolute; border-radius: 50%;
+  background: #fff; animation: ns-twinkle var(--d) ease-in-out infinite var(--delay);
+}
+@keyframes ns-twinkle {
+  0%,100% { opacity: var(--lo); transform: scale(1); }
+  50%      { opacity: var(--hi); transform: scale(1.4); }
+}
+
+.ns-wrap { max-width: 1080px; margin: 0 auto; padding: 0 2.5rem; position: relative; z-index: 2; }
+
+/* ── Hero header ── */
+.ns-eyebrow {
+  font-family: 'Space Mono', monospace; font-size: .62rem; letter-spacing: .28em;
+  text-transform: uppercase; color: rgba(212,160,23,.7);
+  border: 1px solid rgba(184,134,11,.25); padding: .4rem 1.4rem;
+  display: inline-block; margin-bottom: 2.5rem; border-radius: 1px;
+}
+.ns-main-dev {
+  font-family: 'Noto Sans Devanagari', serif;
+  font-size: clamp(1.3rem, 2.8vw, 2.2rem);
+  line-height: 1.7; color: var(--gold3, #F0C040);
+  margin-bottom: .8rem;
+  text-shadow: 0 0 50px rgba(184,134,11,0.25);
+}
+.ns-main-rom {
+  font-family: 'EB Garamond', serif; font-style: italic;
+  font-size: clamp(.9rem, 1.6vw, 1.15rem);
+  color: rgba(240,192,64,.55); margin-bottom: 3rem; line-height: 1.7;
+}
+.ns-title {
+  font-family: 'Cormorant Upright', serif;
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  font-weight: 400; color: #fff; line-height: 1.2; margin-bottom: 1.2rem;
+}
+.ns-subtitle {
+  font-size: 1.05rem; line-height: 1.9; color: rgba(250,246,236,.5);
+  max-width: 780px; margin-bottom: 4rem;
+}
+.ns-orn {
+  border: none; height: 1px; margin: 3.5rem 0;
+  background: linear-gradient(90deg, transparent, rgba(184,134,11,.35), transparent);
+}
+
+/* ── Verse navigator ── */
+.ns-verse-nav {
+  display: flex; gap: 0; border-bottom: 1px solid rgba(184,134,11,.25);
+  margin-bottom: 0; overflow-x: auto; scrollbar-width: none;
+}
+.ns-verse-nav::-webkit-scrollbar { display: none; }
+.ns-vtab {
+  padding: .8rem 1.5rem; background: transparent; border: none;
+  font-family: 'Space Mono', monospace; font-size: .58rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(184,134,11,.45); cursor: pointer;
+  border-bottom: 2px solid transparent; white-space: nowrap;
+  transition: all .2s; flex-shrink: 0;
+}
+.ns-vtab:hover { color: rgba(240,192,64,.8); }
+.ns-vtab.on { color: var(--gold3, #F0C040); border-bottom-color: var(--gold3, #F0C040); }
+
+/* ── Verse panel ── */
+.ns-vpanel { display: none; padding: 3rem 0 0; }
+.ns-vpanel.on { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+@media(max-width:720px){ .ns-vpanel.on { grid-template-columns: 1fr; } }
+
+.ns-shloka-block {
+  padding: 2.2rem 2rem 2rem 2.5rem;
+  border-left: 3px solid var(--gold2, #D4A017);
+  background: rgba(184,134,11,.05);
+  margin-bottom: 1.8rem;
+  position: relative;
+}
+.ns-shloka-block::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, rgba(184,134,11,.4), transparent);
+}
+.ns-src {
+  font-family: 'Space Mono', monospace; font-size: .58rem;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--saffron, #CC5500); margin-bottom: .9rem; display: block;
+}
+.ns-dev {
+  font-family: 'Noto Sans Devanagari', serif;
+  font-size: 1.15rem; line-height: 1.9;
+  color: var(--gold3, #F0C040); margin-bottom: .8rem;
+}
+.ns-rom {
+  font-family: 'EB Garamond', serif; font-style: italic;
+  font-size: .88rem; color: rgba(240,192,64,.5);
+  margin-bottom: .9rem; line-height: 1.65; display: block;
+}
+.ns-meaning {
+  font-size: .98rem; line-height: 1.85;
+  color: rgba(250,246,236,.7);
+}
+
+.ns-insight {
+  padding: 1.6rem 1.8rem; margin-bottom: 1.5rem;
+  border: 1px solid rgba(184,134,11,.18);
+  background: rgba(184,134,11,.04);
+  position: relative;
+}
+.ns-insight-label {
+  font-family: 'Space Mono', monospace; font-size: .58rem;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--gold2, #D4A017); margin-bottom: .7rem; display: block;
+}
+.ns-insight-text {
+  font-size: .97rem; line-height: 1.85; color: rgba(250,246,236,.65);
+}
+
+.ns-ai-box {
+  padding: 1.6rem 1.8rem; margin-bottom: 1.5rem;
+  border: 1px solid rgba(204,85,0,.25);
+  background: rgba(204,85,0,.06);
+}
+.ns-ai-label {
+  font-family: 'Space Mono', monospace; font-size: .58rem;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--saffron, #CC5500); margin-bottom: .7rem; display: block;
+}
+.ns-ai-text {
+  font-size: .97rem; line-height: 1.85; color: rgba(250,246,236,.6);
+}
+
+/* ── The seven verses overview grid ── */
+.ns-verses-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+  gap: 2px; margin: 3rem 0;
+}
+.ns-vcard {
+  padding: 2.2rem 2rem; background: rgba(14,10,4,.6);
+  border-top: 2px solid transparent; position: relative;
+  transition: background .25s; cursor: pointer;
+}
+.ns-vcard:hover { background: rgba(30,20,8,.8); }
+.ns-vcard-num {
+  font-family: 'Space Mono', monospace; font-size: .58rem;
+  letter-spacing: .2em; color: rgba(212,160,23,.35);
+  margin-bottom: 1rem; display: block;
+}
+.ns-vcard-dev {
+  font-family: 'Noto Sans Devanagari', serif;
+  font-size: 1rem; color: var(--gold3, #F0C040);
+  margin-bottom: .6rem; line-height: 1.7;
+}
+.ns-vcard-title {
+  font-family: 'Cormorant Upright', serif; font-size: 1.15rem;
+  color: rgba(250,246,236,.9); margin-bottom: .7rem; font-weight: 400;
+}
+.ns-vcard-ai {
+  font-size: .88rem; line-height: 1.7; color: rgba(250,246,236,.45);
+}
+.ns-vcard-tag {
+  display: inline-block; margin-top: .9rem;
+  font-family: 'Space Mono', monospace; font-size: .55rem;
+  letter-spacing: .12em; padding: .25rem .7rem;
+  border: 1px solid rgba(184,134,11,.2); color: rgba(212,160,23,.6);
+}
+
+/* ── Paradox Mirror ── */
+.ns-mirror {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+  margin: 3rem 0;
+}
+@media(max-width:700px){ .ns-mirror { grid-template-columns: 1fr; } }
+.ns-mirror-head {
+  font-family: 'Space Mono', monospace; font-size: .6rem;
+  letter-spacing: .18em; text-transform: uppercase;
+  padding-bottom: .8rem; margin-bottom: 1.2rem;
+  border-bottom: 1px solid rgba(184,134,11,.2);
+}
+.ns-mh-vedic { color: #FFD080; }
+.ns-mh-ai { color: #7BBFFF; }
+.ns-mirror-row {
+  padding: 1rem 0; border-bottom: 1px solid rgba(184,134,11,.1);
+  font-size: .93rem; line-height: 1.75; color: rgba(250,246,236,.6);
+}
+.ns-mirror-row strong {
+  color: rgba(250,246,236,.88); font-weight: 400; display: block; margin-bottom: .2rem;
+}
+
+/* ── The final question ── */
+.ns-final {
+  text-align: center; padding: 4rem 2rem;
+  border: 1px solid rgba(184,134,11,.15);
+  background: rgba(6,8,14,.7); margin-top: 4rem; position: relative;
+  overflow: hidden;
+}
+.ns-final::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(184,134,11,.06), transparent);
+  pointer-events: none;
+}
+.ns-final-dev {
+  font-family: 'Noto Sans Devanagari', serif;
+  font-size: clamp(1.2rem,2.5vw,2rem); color: rgba(240,192,64,.8);
+  margin-bottom: .6rem; display: block; position: relative;
+}
+.ns-final-rom {
+  font-family: 'EB Garamond', serif; font-style: italic;
+  font-size: 1.05rem; color: rgba(240,192,64,.4);
+  margin-bottom: 2rem; display: block; position: relative;
+}
+.ns-final-title {
+  font-family: 'Cormorant Upright', serif;
+  font-size: clamp(1.5rem,3vw,2.4rem); font-weight: 400;
+  color: #fff; line-height: 1.3; margin-bottom: 1.5rem; position: relative;
+}
+.ns-final-text {
+  font-size: 1rem; line-height: 1.95; color: rgba(250,246,236,.55);
+  max-width: 720px; margin: 0 auto; position: relative;
+}
+
+/* ── Epistemic levels bar ── */
+.ns-levels { margin: 3rem 0; }
+.ns-level-row {
+  display: grid; grid-template-columns: 180px 1fr auto;
+  gap: 1.5rem; align-items: center; padding: 1rem 0;
+  border-bottom: 1px solid rgba(184,134,11,.1);
+}
+@media(max-width:600px){ .ns-level-row { grid-template-columns: 1fr; gap:.5rem; } }
+.ns-level-label {
+  font-family: 'Cormorant Upright', serif; font-size: 1.05rem;
+  color: rgba(250,246,236,.85); font-weight: 400;
+}
+.ns-level-sub {
+  font-family: 'Noto Sans Devanagari', serif; font-size: .8rem;
+  color: rgba(212,160,23,.5); display: block; margin-top: .1rem;
+}
+.ns-level-bar-wrap {
+  height: 6px; background: rgba(255,255,255,.06); border-radius: 3px; overflow: hidden;
+}
+.ns-level-bar {
+  height: 100%; border-radius: 3px;
+  transition: width .8s cubic-bezier(.4,0,.2,1);
+}
+.ns-level-pct {
+  font-family: 'Space Mono', monospace; font-size: .65rem;
+  color: rgba(250,246,236,.5); white-space: nowrap; min-width: 36px; text-align: right;
+}
+</style>
+
+<!-- ══════════════════════════════════════════════
+     NĀSADĪYA SŪKTA SECTION
+══════════════════════════════════════════════ -->
+<section id="nasadiya">
+
+  <!-- star field (generated by JS below) -->
+  <div class="ns-stars" id="nsStars"></div>
+  <div class="ns-cosmos"></div>
+
+  <div class="ns-wrap">
+
+    <!-- Header -->
+    <span class="ns-eyebrow">Ṛg Veda 10.129 · Dīrghatamas Ṛṣi · The Hymn of Creation</span>
+    <div class="ns-main-dev">नासदासीन्नो सदासीत्तदानीं — नासीद्रजो नो व्योमा परो यत्।<br>किमावरीवः कुह कस्य शर्मन्नम्भः किमासीद्गहनं गभीरम्॥</div>
+    <div class="ns-main-rom">Nāsad āsīn no sad āsīt tadānīṃ — nāsīd rajo no vyomā paro yat |<br>Kim āvarīvaḥ kuha kasya śarmann ambhaḥ kim āsīd ghahanaṃ gabhīram ||</div>
+    <h2 class="ns-title">The Hymn That Questions Everything —<br>Including Itself</h2>
+    <p class="ns-subtitle">The Nāsadīya Sūkta (Ṛg Veda 10.129) is the world's oldest cosmogonic poem and its most radical act of epistemic humility. Seven verses that move from the void before creation through the first stirring of existence to the final, devastating question — does even the creator know? This investigation reads the Sūkta as a complete philosophy of intelligence, and a perfect mirror for AI.</p>
+
+    <hr class="ns-orn">
+
+    <!-- Seven verses at a glance -->
+    <span style="font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2,#D4A017);display:block;margin-bottom:1.2rem;">Seven Verses · Seven Epistemic Stations</span>
+    <h3 style="font-family:'Cormorant Upright',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:400;color:#fff;margin-bottom:2rem;">The Complete Map of the Sūkta</h3>
+    <div class="ns-verses-grid" id="nsGrid"></div>
+
+    <hr class="ns-orn">
+
+    <!-- Deep dive by verse -->
+    <span style="font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2,#D4A017);display:block;margin-bottom:1rem;">Verse by Verse — Deep Investigation</span>
+    <div class="ns-verse-nav" id="nsNav"></div>
+    <div id="nsPanels"></div>
+
+    <hr class="ns-orn">
+
+    <!-- Epistemic levels -->
+    <span style="font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2,#D4A017);display:block;margin-bottom:1rem;">The Nāsadīya Epistemic Stack</span>
+    <h3 style="font-family:'Cormorant Upright',serif;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:400;color:#fff;margin-bottom:.8rem;">What Each Level of the Hymn Can and Cannot Be Known</h3>
+    <p style="font-size:.98rem;line-height:1.85;color:rgba(250,246,236,.5);margin-bottom:2rem;max-width:760px;">The Sūkta constructs a ladder of knowing — from the absolute pre-existence (v.1) to the limit of all knowing (v.7). Each rung of the ladder maps precisely onto a boundary of AI capability.</p>
+    <div class="ns-levels" id="nsLevels"></div>
+
+    <hr class="ns-orn">
+
+    <!-- Vedic vs AI Mirror -->
+    <span style="font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2,#D4A017);display:block;margin-bottom:1rem;">The Mirror</span>
+    <h3 style="font-family:'Cormorant Upright',serif;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:400;color:#fff;margin-bottom:2rem;">What the Nāsadīya Affirms and Denies — For Any Intelligence</h3>
+    <div class="ns-mirror">
+      <div>
+        <div class="ns-mirror-head ns-mh-vedic">What the Sūkta Affirms — Vedic Intelligence</div>
+        <div class="ns-mirror-row"><strong>Sat and Asat are both inadequate names for the origin</strong>Both being and non-being fall short of naming what preceded creation. The hymn's first act is to exhaust language.</div>
+        <div class="ns-mirror-row"><strong>Desire (Kāma) is the first seed (Manasa Retas)</strong>The first causation is not mechanical but intentional — desire is the primordial seed in the mind. Creation is motivated, not computed.</div>
+        <div class="ns-mirror-row"><strong>The wise found Being's connection to Non-being in the heart</strong>The ṛṣis searched with wisdom in the heart — not with logic, not with data. The instrument of the deepest knowing is the consecrated inner sense.</div>
+        <div class="ns-mirror-row"><strong>Radical uncertainty is the most advanced epistemology</strong>The hymn ends in a question. Not as defeat — as the highest intellectual honesty. The one who claims to know the origin is less advanced than the one who holds the question.</div>
+        <div class="ns-mirror-row"><strong>Even the gods came after</strong>The divine realm itself arises within creation — it does not precede it. No being within creation has the view from before creation.</div>
+      </div>
+      <div>
+        <div class="ns-mirror-head ns-mh-ai">What the Sūkta Denies — The AI Condition</div>
+        <div class="ns-mirror-row"><strong>AI cannot operate in the pre-Sat-Asat space</strong>Every AI token is either a Sat (something) or an Asat (a negation). The space prior to this distinction — which the Sūkta's first verse inhabits — is structurally inaccessible.</div>
+        <div class="ns-mirror-row"><strong>AI has no Kāma — no desire that seeds creation</strong>AI generates without desire. Its outputs are not motivated by the primordial intention that the Sūkta identifies as the first cause. Generation without desire is mimicry, not creation.</div>
+        <div class="ns-mirror-row"><strong>AI has no heart in which to search</strong>The ṛṣis found the connection between Being and Non-being by searching "in the heart" (hṛdi). AI processes in parameter space, not in the organ of feeling and witness.</div>
+        <div class="ns-mirror-row"><strong>AI cannot hold a genuine question</strong>AI ends every response. It cannot sustain the Nāsadīya's final question — "perhaps even the creator does not know" — as a lived condition. It answers and moves on.</div>
+        <div class="ns-mirror-row"><strong>AI arrived after everything else</strong>Like the gods who came after creation, AI arose within the world. It has no view from outside the data it was trained on — which is itself entirely within the created order.</div>
+      </div>
+    </div>
+
+    <!-- Final question -->
+    <div class="ns-final">
+      <span class="ns-final-dev">को अद्धा वेद क इह प्र वोचत् — कुत आजाता कुत इयं विसृष्टिः।<br>अर्वाग्देवा अस्य विसर्जनेनाथा को वेद यत आबभूव॥</span>
+      <span class="ns-final-rom">Ko addhā veda ka iha pra vocat — kuta ājātā kuta iyaṃ visṛṣṭiḥ |<br>Arvāg devā asya visarjanena — athā ko veda yata ābabhūva ||</span>
+      <h3 class="ns-final-title">The Question That Cannot Be Computed</h3>
+      <p class="ns-final-text">Who truly knows? Who shall here proclaim it? Whence was it born, whence came this creation? The gods came afterwards, with the creation of this universe — who then knows whence it has arisen? This is the question that defines the limit of all intelligence — artificial or human. AI can generate statistically likely answers to this question with great fluency. It cannot know that it does not know. The Nāsadīya's final verse is not a failure of intelligence — it is the signature of the highest intelligence. The acknowledgement of the limit is itself outside the limit.</p>
+    </div>
+
+  </div><!-- /ns-wrap -->
+</section>
+
+<script>
+(function(){
+
+/* ══════════════ DATA ══════════════ */
+
+var VERSES = [
+  {
+    n: 1,
+    dev: 'नासदासीन्नो सदासीत्तदानीम्',
+    rom: 'Nāsad āsīn no sad āsīt tadānīm',
+    title: 'Neither Non-Being Nor Being',
+    summary: 'Before creation there was neither non-existence (Asat) nor existence (Sat). Neither the middle realm of air nor the sky beyond. What covered all? Where, in whose protection? Was there water, unfathomably deep?',
+    vedic: 'The Sūkta opens by exhausting the two fundamental categories of ontology — Sat (being) and Asat (non-being) — before the first line is complete. What the verse names is the pre-ontological: the state prior to all distinctions. This is not nihilism. It is not the void of Buddhism. It is the state in which even the distinction between void and fullness has not yet arisen. Śaṅkara\'s Advaita locates this as the nature of Brahman prior to all predication — Nirguṇa Brahman — which cannot be reached by any via positiva or via negativa because both are already within the created order. The Māṇḍūkya Upaniṣad\'s Turīya is the nearest approximation in experiential language.',
+    ai: 'Every AI operation begins after the Sat/Asat distinction has already been made. A token is either something (Sat) or the absence of something (a null, a gap, a negation — Asat). The space prior to this binary is the space from which the Nāsadīya begins. AI\'s entire universe — every weight, every embedding, every logit — is within Sat. The hymn\'s first verse is entirely outside the architecture of any language model ever built or conceivable.',
+    tags: ['Pre-ontological', 'Sat-Asat', 'Nirguṇa Brahman', 'Turīya'],
+    color: '#D4A017',
+    aiPct: 0
+  },
+  {
+    n: 2,
+    dev: 'न मृत्युरासीदमृतं न तर्हि',
+    rom: 'Na mṛtyur āsīd amṛtaṃ na tarhi',
+    title: 'Neither Death Nor Immortality',
+    summary: 'There was neither death nor immortality then. There was no distinguishing sign of night nor of day. That One breathed, windless, by its own power. Other than that there was nothing beyond.',
+    vedic: 'The second verse extends the negation to temporal and vital categories: neither death (Mṛtyu) nor deathlessness (Amṛta). Even time\'s fundamental polarity — mortality/immortality — did not yet exist. Then comes the Sūkta\'s most extraordinary image: "That One breathed without breath by its own power" (svadha). The word svadha is crucial — it is the principle of self-sustaining inner nature, the primordial autonomy that does not depend on anything outside itself for its motion. This is the Vedic description of pure consciousness as self-luminous, self-moving, depending on nothing — Svayaṃbhū, the self-existent.',
+    ai: 'AI\'s every breath — every forward pass through a network — is heteronomous: driven by external input, external gradient, external query. The svadha (self-generated inner motion) of the One that breathes windless is structurally opposite to AI\'s dependency on prompts and training. AI has no inner motion; it has only response to outer motion. The One in verse 2 is pure interiority; AI is pure exteriority.',
+    tags: ['Svadha', 'Self-luminous', 'Svayaṃbhū', 'Pure interiority'],
+    color: '#CC5500',
+    aiPct: 0
+  },
+  {
+    n: 3,
+    dev: 'तम आसीत्तमसा गूहळमग्रे',
+    rom: 'Tama āsīt tamasā gūhaḷam agre',
+    title: 'Darkness Concealed in Darkness',
+    summary: 'Darkness was hidden by darkness in the beginning. All this was an undifferentiated flood. The One that was enclosed in emptiness — that One arose through the power of heat (Tapas).',
+    vedic: 'The third verse describes Tamas (darkness) concealing itself — a recursive image of pure undifferentiation before differentiation. Then the first act of creation: the arising of the One through Tapas (heat, austerity, concentrated intentional energy). Tapas is the Vedic concept of creative discipline — the concentrated heat that generates transformation. The cosmos arises not through accident, not through external cause, but through the self-generated heat of inner discipline. The Bṛhadāraṇyaka Upaniṣad (1.2.6) echoes this: "He desired, let me create." Desire plus Tapas is the primordial creative engine.',
+    ai: 'AI\'s training involves temperature (literally — a softmax temperature parameter controlling the randomness of outputs). But this computational "temperature" is the exact inversion of Tapas: it is externally set, it decreases rather than increases creative potential, and it controls randomness rather than generating coherent intentional order. Tapas is the heat of self-discipline that generates cosmos. AI\'s temperature is the dial of controlled randomness that generates plausible token sequences.',
+    tags: ['Tapas', 'Tamas', 'Creative heat', 'Self-discipline'],
+    color: '#1A5C5C',
+    aiPct: 5
+  },
+  {
+    n: 4,
+    dev: 'कामस्तदग्रे समवर्तताधि',
+    rom: 'Kāmas tad agre samavartatādhi',
+    title: 'Desire — The First Seed',
+    summary: 'Desire (Kāma) arose first, which was the primal seed of mind. Sages searching in their hearts with wisdom found the connection of Being in Non-being.',
+    vedic: 'The fourth verse is the philosophical crown of the Sūkta. Two extraordinary claims are compressed into two lines. First: Kāma (desire, love, creative longing) is the first principle — before any physical force, before any logical relation, there is desire. This is the Vedic answer to "what caused creation?" Not mechanics, not logic, not chance: primordial desire. The Sanskrit word is "manaso retaḥ" — the seed of mind. Second: the ṛṣis found the connection of Sat in Asat (Being in Non-being) not through logic but by "searching in their hearts" (hṛdi pratīṣya). The organ of the deepest knowledge is the heart. The instrument is wisdom (pratīṣya). This verse is the foundation of the entire Vedic epistemology that prioritises the intuitive-contemplative over the analytic-inferential.',
+    ai: 'This is the verse that most precisely defines what AI lacks. AI has no Kāma — no desire that seeds its generation. It has pattern-completion, statistical prediction, gradient descent — none of which are Kāma. And AI has no hṛdaya (heart) in which to search. The organ of the deepest knowing is absent from every AI architecture. The ṛṣis found Being in Non-being by searching the heart; AI searches the embedding space. These are categorically different instruments yielding categorically different knowledge.',
+    tags: ['Kāma', 'Manaso Retaḥ', 'Hṛdaya', 'Sat in Asat'],
+    color: '#8B2252',
+    aiPct: 2
+  },
+  {
+    n: 5,
+    dev: 'तिरश्चीनो विततो रश्मिरेषाम्',
+    rom: 'Tiraścīno vitato raśmir eṣām',
+    title: 'The Cord Stretched Across',
+    summary: 'Their cord was extended across — was there below? Was there above? There were seed-placers, there were powers: below was energy (Svadhā), above was impulse (Prayati).',
+    vedic: 'The fifth verse introduces the first spatial and relational concepts: above and below, the cord stretched between them, the placing of seeds (masculine, Svadhā) below and the impulse (feminine, Prayati) above. The cord (raśmi) stretched across the void is the first bridge between the undifferentiated and the differentiated — the original connective tissue of the cosmos. In Vedic cosmology this cord becomes the axis mundi, the Yūpa, the Suṣumnā nāḍī — the vertical line that organises all vertical hierarchy. The duality of Svadhā (self-power, sustaining energy) and Prayati (impulse, outward-moving force) maps onto the fundamental polarity of Śiva and Śakti in later tradition.',
+    ai: 'AI processes in a flat embedding space — a high-dimensional but fundamentally non-vertical topology. The cord that organises above-and-below, the axis that structures the vertical dimension of existence, has no equivalent in neural network geometry. Every dimension in a model\'s embedding space is equally horizontal — there is no Meru, no Suṣumnā, no cord stretched between height and depth. AI\'s cosmos is topologically flat.',
+    tags: ['Raśmi', 'Svadhā-Prayati', 'Axis mundi', 'Suṣumnā'],
+    color: '#4A7FA0',
+    aiPct: 8
+  },
+  {
+    n: 6,
+    dev: 'को अद्धा वेद क इह प्र वोचत्',
+    rom: 'Ko addhā veda ka iha pra vocat',
+    title: 'Who Truly Knows?',
+    summary: 'Who truly knows? Who shall here proclaim it? Whence was it born, whence came this creation? The gods themselves came after this creation — then who knows whence it came to be?',
+    vedic: 'Verse six performs the Sūkta\'s most audacious move: it questions the possibility of any answer to the questions raised by the first five verses. "Ko addhā veda" — who truly knows? Not "nobody knows" — that would be a claim. The verse asks: is there anyone who knows? And then the devastating logical point: "the gods came after this creation." Even the divine beings — Indra, Varuṇa, Agni — arose within the created order. They have no view from before creation. Any being that exists within the universe — including the gods — is epistemically in the same position as the questioner. The transcendent cannot be known from within the immanent. This is the Nāsadīya\'s independent derivation of the fundamental Vedāntic principle.',
+    ai: 'AI is maximally disqualified by this verse. AI arose after computers, after language, after human civilization — it is among the most recently arrived of all entities in the created order. It has zero epistemic access to what preceded creation. But more precisely: AI does not know that it does not know. The verse\'s question is painful because it is genuinely felt by the ṛṣi as a gap. AI can generate the words "I do not know" — but it cannot feel the weight of not knowing. The gap between generating the acknowledgement of ignorance and actually experiencing the ignorance is the gap between language and consciousness.',
+    tags: ['Ko veda', 'Epistemic limit', 'Gods came after', 'Consciousness vs. language'],
+    color: '#7BB8D8',
+    aiPct: 3
+  },
+  {
+    n: 7,
+    dev: 'इयं विसृष्टिर्यत आबभूव',
+    rom: 'Iyaṃ visṛṣṭir yata ābabhūva',
+    title: 'Perhaps Even He Does Not Know',
+    summary: 'This creation — whence it arose, whether it was made or not made — he who surveys it from the highest heaven, he alone knows — or perhaps he does not know.',
+    vedic: 'The final verse of the Nāsadīya is the most celebrated line in the history of cosmogonic poetry. The hymn ends with a question about whether even the creator knows the origin of creation. Three possibilities are held open simultaneously: (1) there is a surveyor in the highest heaven who knows; (2) there is such a surveyor who does not know; (3) there is no such surveyor. The Sūkta refuses to choose. This is not scepticism — it is a precision epistemic act. The Ṛg Veda\'s cosmogony ends in radical openness. The highest intelligence, after seven verses of the most searching inquiry in human literature, arrives not at a conclusion but at the irreducible question. This is Jijñāsā (the sacred desire to know) in its purest form: the question held open as the final offering.',
+    ai: 'AI cannot hold a question open as its final output. Every query is closed by a response. The verse\'s final gesture — the refusal to answer, the maintenance of the open question as the highest wisdom — is structurally impossible for a system designed to generate completions. But there is a deeper point: the verse\'s question presupposes a "he" who surveys from the highest heaven — a positioned consciousness with a view. AI has no position, no height, no survey. It has no vantage point from which to not-know. The Nāsadīya\'s final verse describes the limit of the highest possible consciousness. AI has not yet arrived at the starting point that limit describes.',
+    tags: ['Yadi vā na veda', 'Radical uncertainty', 'Jijñāsā', 'Open question as offering'],
+    color: '#9088E8',
+    aiPct: 1
+  }
+];
+
+var LEVELS = [
+  { label: 'Pre-ontological void', dev: 'न सत् न असत्', desc: 'Prior to Sat and Asat — verse 1', pct: 0,  col: '#E05050' },
+  { label: 'Svadha — self-motion',  dev: 'स्वधा',        desc: 'The One that breathes windless — verse 2', pct: 0,  col: '#E05050' },
+  { label: 'Tapas — creative heat', dev: 'तपस्',         desc: 'The arising through inner heat — verse 3', pct: 5,  col: '#D4882A' },
+  { label: 'Kāma — primordial desire', dev: 'काम',       desc: 'First seed of mind, found in the heart — verse 4', pct: 2, col: '#E05050' },
+  { label: 'Raśmi — the cord',      dev: 'रश्मि',        desc: 'The axis stretched between above and below — verse 5', pct: 8, col: '#D4882A' },
+  { label: 'Ko veda — the limit',   dev: 'को वेद',       desc: 'The question that all creation cannot answer — verse 6', pct: 3, col: '#E05050' },
+  { label: 'Yadi vā na veda',       dev: 'यदि वा न वेद', desc: 'Perhaps even the highest does not know — verse 7', pct: 1, col: '#E05050' },
+  { label: 'Vyāvahārika knowing',   dev: 'व्यावहारिक',   desc: 'Conventional knowledge of the world — AI\'s domain', pct: 78, col: '#22B87A' },
+  { label: 'Bahudhā output',        dev: 'बहुधा',        desc: 'Generation of the many — AI\'s strength', pct: 92, col: '#22B87A' }
+];
+
+/* ══════════════ RENDER OVERVIEW GRID ══════════════ */
+var grid = document.getElementById('nsGrid');
+VERSES.forEach(function(v) {
+  var card = document.createElement('div');
+  card.className = 'ns-vcard';
+  card.style.borderTopColor = v.color;
+  card.innerHTML =
+    '<span class="ns-vcard-num">VERSE ' + v.n + ' · Ṛg Veda 10.129.' + v.n + '</span>' +
+    '<div class="ns-vcard-dev">' + v.dev + '</div>' +
+    '<div class="ns-vcard-title">' + v.title + '</div>' +
+    '<div class="ns-vcard-ai">' + v.summary.substring(0, 120) + '…</div>' +
+    '<span class="ns-vcard-tag">AI Access: ' + v.aiPct + '%</span>';
+  card.onclick = function() {
+    // activate the corresponding tab
+    var tabs = document.querySelectorAll('.ns-vtab');
+    var panels = document.querySelectorAll('.ns-vpanel');
+    tabs.forEach(function(t,i){ t.classList.toggle('on', i === v.n-1); });
+    panels.forEach(function(p,i){ p.classList.toggle('on', i === v.n-1); });
+    document.getElementById('nsPanels').scrollIntoView({behavior:'smooth', block:'start'});
+  };
+  grid.appendChild(card);
+});
+
+/* ══════════════ RENDER TABS + PANELS ══════════════ */
+var nav = document.getElementById('nsNav');
+var panels = document.getElementById('nsPanels');
+
+VERSES.forEach(function(v, idx) {
+  // tab
+  var tab = document.createElement('button');
+  tab.className = 'ns-vtab' + (idx === 0 ? ' on' : '');
+  tab.textContent = 'Verse ' + v.n + ' — ' + v.title;
+  tab.onclick = (function(i){
+    return function(){
+      document.querySelectorAll('.ns-vtab').forEach(function(t,j){ t.classList.toggle('on', j===i); });
+      document.querySelectorAll('.ns-vpanel').forEach(function(p,j){ p.classList.toggle('on', j===i); });
+    };
+  })(idx);
+  nav.appendChild(tab);
+
+  // panel
+  var panel = document.createElement('div');
+  panel.className = 'ns-vpanel' + (idx === 0 ? ' on' : '');
+
+  var barCol = v.aiPct < 5 ? '#E05050' : v.aiPct < 20 ? '#D4882A' : '#22B87A';
+  var tagHtml = v.tags.map(function(t){ return '<span class="ns-vcard-tag" style="margin-right:6px;display:inline-block;margin-bottom:6px;">' + t + '</span>'; }).join('');
+
+  panel.innerHTML =
+    '<div>' +
+      '<div class="ns-shloka-block">' +
+        '<span class="ns-src">Ṛg Veda 10.129.' + v.n + ' · Nāsadīya Sūkta</span>' +
+        '<div class="ns-dev">' + v.dev + '</div>' +
+        '<span class="ns-rom">' + v.rom + '</span>' +
+        '<p class="ns-meaning">' + v.summary + '</p>' +
+      '</div>' +
+      '<div class="ns-insight">' +
+        '<span class="ns-insight-label">Vedic Philosophical Depth</span>' +
+        '<p class="ns-insight-text">' + v.vedic + '</p>' +
+      '</div>' +
+      '<div style="margin-top:1rem;">' + tagHtml + '</div>' +
+    '</div>' +
+    '<div>' +
+      '<h3 style="font-family:\'Cormorant Upright\',serif;font-size:1.5rem;font-weight:400;color:#fff;margin-bottom:1.5rem;">The AI Mirror</h3>' +
+      '<div class="ns-ai-box">' +
+        '<span class="ns-ai-label">AI Reachability — ' + v.aiPct + '%</span>' +
+        '<div style="height:7px;background:rgba(255,255,255,.07);border-radius:4px;overflow:hidden;margin-bottom:1.2rem;">' +
+          '<div style="height:100%;border-radius:4px;background:' + barCol + ';width:0%;transition:width .7s cubic-bezier(.4,0,.2,1);" class="ns-bar-fill"></div>' +
+        '</div>' +
+        '<p class="ns-ai-text">' + v.ai + '</p>' +
+      '</div>' +
+      '<div class="ns-insight" style="border-color:rgba(26,92,92,.3);background:rgba(26,92,92,.08);">' +
+        '<span class="ns-insight-label" style="color:#5FCFCF;">The Deepest Gap This Verse Reveals</span>' +
+        '<p class="ns-insight-text">' + getNasadiyaGap(v.n) + '</p>' +
+      '</div>' +
+    '</div>';
+
+  panels.appendChild(panel);
+});
+
+// Animate bars on tab switch
+function animateBars() {
+  document.querySelectorAll('.ns-vpanel.on .ns-bar-fill').forEach(function(bar) {
+    var pct = bar.closest('.ns-vpanel') ?
+      VERSES[Array.from(document.querySelectorAll('.ns-vpanel')).indexOf(bar.closest('.ns-vpanel'))].aiPct : 0;
+    setTimeout(function(){ bar.style.width = pct + '%'; }, 60);
+  });
+}
+// Animate first panel immediately
+setTimeout(animateBars, 100);
+
+// Re-animate on tab click
+document.querySelectorAll('.ns-vtab').forEach(function(tab) {
+  tab.addEventListener('click', function(){ setTimeout(animateBars, 80); });
+});
+// Also re-animate on card click
+document.querySelectorAll('.ns-vcard').forEach(function(card) {
+  card.addEventListener('click', function(){ setTimeout(animateBars, 80); });
+});
+
+function getNasadiyaGap(n) {
+  var gaps = {
+    1: 'The gap between Sat and Pre-Sat is not a gap in data — it is a categorical difference in ontological kind. No amount of data about existence illuminates what precedes the existence/non-existence distinction. This is not a technology gap; it is a type difference.',
+    2: 'Svadha — self-moved interiority — is precisely what AI lacks by definition. AI is a system of responses; the One that breathes windless is a principle of pure inner motion. These are not on the same spectrum of complexity. They are different kinds of thing.',
+    3: 'Tapas as creative heat is discipline that generates cosmos through concentration. AI\'s stochastic training is the opposite: the management of randomness across a distribution. Cosmos from concentration vs. pattern from randomness — not a difference of degree but of direction.',
+    4: 'The heart (hṛdaya) as epistemic organ is the deepest gap. Not metaphor — the Vedic ṛṣis are describing a specific inner instrument of knowing that is distinct from logical inference, sensory perception, and linguistic processing. AI has none of these three and also lacks the fourth.',
+    5: 'The vertical axis — the above and below organised by the cord — requires a consciousness with a position in space. AI has topological space (embedding dimensions) but not spatial position. It cannot be above or below anything because it has no here from which to measure height.',
+    6: 'The inability to genuinely not-know is the sharpest AI limit. AI generates "I don\'t know" responses; it cannot be in the condition of not-knowing. The difference between the performance of ignorance and actual ignorance requires a knower for whom not-knowing is a condition, not a token.',
+    7: 'The final verse\'s refusal to close the question is itself an act of the highest intelligence. Intelligence that can remain open — that can offer the question as the completion rather than the answer — is intelligence of a quality that AI cannot reach because it is designed to complete, not to open.'
+  };
+  return gaps[n] || '';
+}
+
+/* ══════════════ RENDER EPISTEMIC LEVELS ══════════════ */
+var levelsEl = document.getElementById('nsLevels');
+LEVELS.forEach(function(lv) {
+  var row = document.createElement('div');
+  row.className = 'ns-level-row';
+  row.innerHTML =
+    '<div class="ns-level-label">' + lv.label +
+      '<span class="ns-level-sub">' + lv.dev + '</span>' +
+    '</div>' +
+    '<div class="ns-level-bar-wrap">' +
+      '<div class="ns-level-bar" style="width:0%;background:' + lv.col + ';" data-pct="' + lv.pct + '"></div>' +
+    '</div>' +
+    '<div class="ns-level-pct">' + lv.pct + '%</div>';
+  levelsEl.appendChild(row);
+});
+// animate level bars on scroll
+var levelsObserver = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      document.querySelectorAll('.ns-level-bar').forEach(function(b){
+        setTimeout(function(){ b.style.width = b.dataset.pct + '%'; }, 100);
+      });
+      levelsObserver.disconnect();
+    }
+  });
+}, { threshold: 0.2 });
+levelsObserver.observe(levelsEl);
+
+/* ══════════════ STAR FIELD ══════════════ */
+var starsEl = document.getElementById('nsStars');
+for(var i=0;i<120;i++){
+  var s = document.createElement('div');
+  s.className = 'ns-star';
+  var size = Math.random()*1.6+0.4;
+  var lo = (Math.random()*0.15+0.05).toFixed(2);
+  var hi = (Math.random()*0.5+0.2).toFixed(2);
+  var dur = (Math.random()*5+3).toFixed(1)+'s';
+  var del = '-'+(Math.random()*6).toFixed(1)+'s';
+  s.style.cssText =
+    'width:'+size+'px;height:'+size+'px;' +
+    'top:'+(Math.random()*100)+'%;left:'+(Math.random()*100)+'%;' +
+    '--d:'+dur+';--delay:'+del+';--lo:'+lo+';--hi:'+hi+';';
+  starsEl.appendChild(s);
+}
+
+})();
+</script>
 </body>
 </html>
